@@ -81,11 +81,13 @@ describe('Resource Links Validation', () => {
             const missingImages: string[] = [];
 
             ecosystemConfig.forEach(ecosystem => {
-                if (!fileExists(path.join(__dirname, ecosystem.appImage))) {
-                    missingImages.push(
-                        `${ecosystem.name} - appImage: ${ecosystem.appImage}`
-                    );
-                }
+                ecosystem.appImage.forEach((img, idx) => {
+                    if (!fileExists(path.join(__dirname, img))) {
+                        missingImages.push(
+                            `${ecosystem.name} - appImage[${idx}]: ${img}`
+                        );
+                    }
+                });
             });
 
             expect(missingImages).toEqual([]);

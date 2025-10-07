@@ -25,8 +25,8 @@ const EcosystemRequirementsStep = () => {
                 <Requirement
                     mediaSrc={[
                         {
-                            path: ecosystem?.hubImage,
-                            alt: ecosystem?.hubName,
+                            path: [ecosystem?.hubImage],
+                            alt: [ecosystem?.hubName],
                             text: 'Home Hub with Thread Border Router support',
                             description: `This guide uses <b>${ecosystem?.hubName}</b> device, but you can use any other Home Hub compatible with <b>${ecosystem?.name}</b> that supports Matter and Thread Border Router.`,
                             visit_note: (
@@ -51,9 +51,9 @@ const EcosystemRequirementsStep = () => {
                         },
                         {
                             path: ecosystem?.appImage,
-                            alt: ecosystem?.appSystemSupport,
+                            alt: ecosystem.appImageAlt,
                             text: `Smartphone with <b>${ecosystem?.name}</b> Application installed`,
-                            description: `The <b>${ecosystem?.name}</b> app supports <b>${ecosystem?.appSystemSupport}</b>.`,
+                            description: `The <b>${ecosystem?.name}</b> app supports <b>${ecosystem.appSystemSupport}</b>.`,
                             visit_note: (
                                 <div>
                                     Visit the{' '}

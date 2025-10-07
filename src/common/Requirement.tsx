@@ -9,8 +9,8 @@ import React, { ReactElement } from 'react';
 import Link from './Link';
 
 interface MediaProps {
-    path: string;
-    alt: string;
+    path: string[];
+    alt: string[];
     text: string;
     description: string;
     visit_note: ReactElement;
@@ -46,12 +46,22 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                                 __html: media.text,
                             }}
                         />
-                        {/* Media image */}
-                        <img
-                            src={media.path}
-                            alt={media.alt}
-                            className="tw-mx-auto tw-h-[200px]"
-                        />
+                        {/* Media images */}
+                        <div className="tw-flex tw-flex-row">
+                        {media.path.map((imgSrc, imgIdx) => (
+                                <div className="tw-flex tw-flex-col tw-items-center tw-w-full">
+                                    <img
+                                        key={imgSrc + imgIdx}
+                                        src={imgSrc}
+                                        alt={media.alt[imgIdx]}
+                                        className="tw-h-[190px]"
+                                    />
+                                    <div className="tw-mt-2 tw-text-center tw-text-xs tw-text-gray-500">
+                                        {media.alt[imgIdx]}
+                                    </div>
+                                </div>
+                        ))}
+                        </div>
                     </div>
                     {/* Media description */}
                     <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-2">
