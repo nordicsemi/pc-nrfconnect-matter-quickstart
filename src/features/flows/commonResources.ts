@@ -12,15 +12,6 @@ import {
 
 export const commonLearningResources: ResourceProps[] = [
     {
-        label: 'Developer Academy',
-        description:
-            'Speed up your wireless IoT learning journey with Nordic devices.',
-        link: {
-            label: 'Nordic Developer Academy',
-            href: 'https://academy.nordicsemi.com/',
-        },
-    },
-    {
         label: 'nRF Connect SDK and Zephyr',
         description:
             'Learn about the application development in the nRF Connect SDK and Zephyr.',

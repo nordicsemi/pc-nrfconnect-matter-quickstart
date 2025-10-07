@@ -36,12 +36,17 @@ export interface ResourcesWithdDownloadAndGuide {
 }
 
 export const Resource = ({ label, description, link }: ResourceProps) => (
-    <div>
-        <b>{label}</b>
-        <br />
-        {description}
-        <div className="tw-pt-0.5 tw-text-xs">
-            <Link label={link.label} href={link.href} color="tw-text-primary" />
+    <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+        <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+            <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
+                <b>{label}</b>
+            </div>
+            <div className="tw-flex tw-max-w-[650px] tw-flex-col">
+                {description}
+                <div className="tw-pt-0.5 tw-text-xs">
+                    <Link label={link.label} href={link.href} color="tw-text-primary" />
+                </div>
+            </div>
         </div>
     </div>
 );
@@ -59,29 +64,35 @@ export const ResourceWithDownloadAndGuide = ({
         }
     };
     return (
-        <div>
-            <b>{label}</b>
-            <br />
-            {description}
-            <div className="tw-pt-0.5 tw-text-xs">
-                See the{' '}
-                <Link
-                    label={guideLink.label}
-                    href={guideLink.href}
-                    color="tw-text-primary"
-                />
+        <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+            <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+                <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
+                    <b>{label}</b>
+                </div>
+                <div className="tw-flex tw-max-w-[650px] tw-flex-col">
+                    {description}
+                    <div className="tw-pt-0.5 tw-text-xs">
+                        See the{' '}
+                        <Link
+                            label={guideLink.label}
+                            href={guideLink.href}
+                            color="tw-text-primary"
+                        />
+                    </div>
+                </div>
             </div>
-            <div style={{ height: '5px' }} />
-            {downloadLink && (
-                <Button
-                    variant="link-button"
-                    size="xl"
-                    onClick={onClickDownload}
-                    className="tw-flex-1"
-                >
-                    {buttonLabel}
-                </Button>
-            )}
+            <div className="tw-flex tw-items-center tw-ml-4">
+                {downloadLink && (
+                    <Button
+                        variant="link-button"
+                        size="xl"
+                        onClick={onClickDownload}
+                        className="tw-shrink-0"
+                    >
+                        {buttonLabel}
+                    </Button>
+                )}
+            </div>
         </div>
     );
 };
@@ -103,27 +114,31 @@ export const ResourceWithButton = ({
     disabled,
     onClick,
 }: ResourceWithButtonProps) => (
-    <div className="tw-flex tw-flex-row tw-justify-between tw-gap-10">
-        <div className="tw-w-80">
-            <div>
+    <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+        <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+            <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                 <b>{title}</b>
             </div>
-            {description}
-            {links?.map(({ label, href }) => (
-                <div key={label} className="tw-pt-0.5 tw-text-xs">
-                    <Link label={label} href={href} color="tw-text-primary" />
-                </div>
-            ))}
+            <div className="tw-flex tw-max-w-[650px] tw-flex-col">
+                {description}
+                {links?.map(({ label, href }) => (
+                    <div key={label} className="tw-pt-0.5 tw-text-xs">
+                        <Link label={label} href={href} color="tw-text-primary" />
+                    </div>
+                ))}
+            </div>
         </div>
-        <Button
-            variant="link-button"
-            size="xl"
-            disabled={disabled}
-            onClick={onClick}
-            className="tw-flex-1"
-        >
-            {buttonLabel}
-        </Button>
+        <div className="tw-flex tw-items-center tw-ml-4">
+            <Button
+                variant="link-button"
+                size="xl"
+                disabled={disabled}
+                onClick={onClick}
+                className="tw-shrink-0"
+            >
+                {buttonLabel}
+            </Button>
+        </div>
     </div>
 );
 
@@ -162,27 +177,30 @@ export const AppResourceButton = ({
     }, [app]);
 
     return (
-        <div className="tw-flex tw-flex-row tw-justify-between tw-gap-10">
-            <div className="tw-w-80">
-                <div>
+        <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+            <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+                <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                     <b>{title || displayName}</b>
                 </div>
-                {description}
-                {links?.map(({ label, href }) => (
-                    <div key={label} className="tw-pt-0.5 tw-text-xs">
-                        <Link
-                            label={label}
-                            href={href}
-                            color="tw-text-primary"
-                        />
-                    </div>
-                ))}
+                <div className="tw-flex tw-max-w-[650px] tw-flex-col">
+                    {description}
+                    {links?.map(({ label, href }) => (
+                        <div key={label} className="tw-pt-0.5 tw-text-xs">
+                            <Link
+                                label={label}
+                                href={href}
+                                color="tw-text-primary"
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
-            <Button
-                variant="link-button"
-                size="xl"
-                disabled={disabled || isInstalling}
-                onClick={async () => {
+            <div className="tw-flex tw-items-center tw-ml-4">
+                <Button
+                    variant="link-button"
+                    size="xl"
+                    disabled={disabled || isInstalling}
+                    onClick={async () => {
                     const appInfo = await apps
                         .getDownloadableApps()
                         .then(({ apps: receivedApps }) =>
@@ -217,10 +235,11 @@ export const AppResourceButton = ({
                         app,
                     });
                 }}
-                className="tw-flex-1"
-            >
-                {isInstalling ? 'Installing...' : `Open ${displayName}`}
-            </Button>
+                    className="tw-shrink-0"
+                >
+                    {isInstalling ? 'Installing...' : `Open ${displayName}`}
+                </Button>
+            </div>
         </div>
     );
 };
