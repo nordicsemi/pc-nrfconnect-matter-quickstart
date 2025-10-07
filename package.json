@@ -52,7 +52,8 @@
         "check:types": "check-for-typescript tsc --noEmit --pretty",
         "check:license": "nrfconnect-license check",
         "nordic-publish": "node ./dist/nordic-publish.js",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "regenerate": "./scripts/regenerate_hexs.sh"
     },
     "eslintConfig": {
         "extends": "./node_modules/@nordicsemiconductor/pc-nrfconnect-shared/config/eslintrc"
