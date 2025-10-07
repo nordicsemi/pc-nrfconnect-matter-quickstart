@@ -33,7 +33,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
         hubImage: '../resources/ecosystems/Apple/apple_hub.png',
         hubName: 'Apple HomePod Mini',
         appImage: ['../resources/ecosystems/Apple/apple_home_qr_code.png'],
-        appImageAlt: ['Get iOS version from App Store'],
+        appImageAlt: ['Get the iOS version from App Store'],
         appSystemSupport: 'iOS system',
         setupVideo: '../resources/ecosystems/Apple/apple_hub.mp4',
         setupManual: [
@@ -66,8 +66,14 @@ export const ecosystemConfig: EcosystemConfig[] = [
         hubManual: 'https://home.google.com/get-inspired/matter-and-thread/',
         hubImage: '../resources/ecosystems/Google/google_hub.png',
         hubName: 'Google Nest Hub 2nd Gen',
-        appImage: ['../resources/ecosystems/Google/google_home_android_qr_code.png', '../resources/ecosystems/Google/google_home_ios_qr_code.png'],
-        appImageAlt: ['Get Android version from Google Play', 'Get iOS version from App Store'],
+        appImage: [
+            '../resources/ecosystems/Google/google_home_android_qr_code.png',
+            '../resources/ecosystems/Google/google_home_ios_qr_code.png',
+        ],
+        appImageAlt: [
+            'Get the Android version from Google Play',
+            'Get the iOS version from App Store',
+        ],
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/Google/google_hub.mp4',
         setupManual: [
@@ -107,8 +113,14 @@ export const ecosystemConfig: EcosystemConfig[] = [
             'https://developer.amazon.com/en-US/docs/alexa/smarthome/matter-support.html#compatible-echos',
         hubImage: '../resources/ecosystems/Amazon/amazon_hub.png',
         hubName: 'Amazon Echo 4th Gen',
-        appImage: ['../resources/ecosystems/Amazon/amazon_alexa_android_qr_code.png', '../resources/ecosystems/Amazon/amazon_alexa_ios_qr_code.png'],
-        appImageAlt: ['Get Android version from Google Play', 'Get iOS version from App Store'],
+        appImage: [
+            '../resources/ecosystems/Amazon/amazon_alexa_android_qr_code.png',
+            '../resources/ecosystems/Amazon/amazon_alexa_ios_qr_code.png',
+        ],
+        appImageAlt: [
+            'Get the Android version from Google Play',
+            'Get the iOS version from App Store',
+        ],
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/Amazon/alexa_hub.mp4',
         setupManual: [
@@ -149,8 +161,14 @@ export const ecosystemConfig: EcosystemConfig[] = [
         hubManual: 'https://partners.smartthings.com/matter',
         hubImage: '../resources/ecosystems/SmartThings/smartthings_hub.png',
         hubName: 'Aeotec Smart Home Hub',
-        appImage: ['../resources/ecosystems/SmartThings/smartthings_android_qr_code.png', '../resources/ecosystems/SmartThings/smartthings_ios_qr_code.png'],
-        appImageAlt: ['Get Android version from Google Play', 'Get iOS version from App Store'],
+        appImage: [
+            '../resources/ecosystems/SmartThings/smartthings_android_qr_code.png',
+            '../resources/ecosystems/SmartThings/smartthings_ios_qr_code.png',
+        ],
+        appImageAlt: [
+            'Get the Android version from Google Play',
+            'Get the iOS version from App Store',
+        ],
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/SmartThings/smartthings_hub.mp4',
         setupManual: [

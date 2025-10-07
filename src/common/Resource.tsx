@@ -37,14 +37,18 @@ export interface ResourcesWithdDownloadAndGuide {
 
 export const Resource = ({ label, description, link }: ResourceProps) => (
     <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
-        <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+        <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
             <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                 <b>{label}</b>
             </div>
             <div className="tw-flex tw-max-w-[650px] tw-flex-col">
                 {description}
                 <div className="tw-pt-0.5 tw-text-xs">
-                    <Link label={link.label} href={link.href} color="tw-text-primary" />
+                    <Link
+                        label={link.label}
+                        href={link.href}
+                        color="tw-text-primary"
+                    />
                 </div>
             </div>
         </div>
@@ -65,7 +69,7 @@ export const ResourceWithDownloadAndGuide = ({
     };
     return (
         <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
-            <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+            <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
                 <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                     <b>{label}</b>
                 </div>
@@ -81,7 +85,7 @@ export const ResourceWithDownloadAndGuide = ({
                     </div>
                 </div>
             </div>
-            <div className="tw-flex tw-items-center tw-ml-4">
+            <div className="tw-ml-4 tw-flex tw-items-center">
                 {downloadLink && (
                     <Button
                         variant="link-button"
@@ -115,7 +119,7 @@ export const ResourceWithButton = ({
     onClick,
 }: ResourceWithButtonProps) => (
     <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
-        <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+        <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
             <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                 <b>{title}</b>
             </div>
@@ -123,12 +127,16 @@ export const ResourceWithButton = ({
                 {description}
                 {links?.map(({ label, href }) => (
                     <div key={label} className="tw-pt-0.5 tw-text-xs">
-                        <Link label={label} href={href} color="tw-text-primary" />
+                        <Link
+                            label={label}
+                            href={href}
+                            color="tw-text-primary"
+                        />
                     </div>
                 ))}
             </div>
         </div>
-        <div className="tw-flex tw-items-center tw-ml-4">
+        <div className="tw-ml-4 tw-flex tw-items-center">
             <Button
                 variant="link-button"
                 size="xl"
@@ -178,7 +186,7 @@ export const AppResourceButton = ({
 
     return (
         <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
-            <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-flex-1">
+            <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
                 <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                     <b>{title || displayName}</b>
                 </div>
@@ -195,46 +203,48 @@ export const AppResourceButton = ({
                     ))}
                 </div>
             </div>
-            <div className="tw-flex tw-items-center tw-ml-4">
+            <div className="tw-ml-4 tw-flex tw-items-center">
                 <Button
                     variant="link-button"
                     size="xl"
                     disabled={disabled || isInstalling}
                     onClick={async () => {
-                    const appInfo = await apps
-                        .getDownloadableApps()
-                        .then(({ apps: receivedApps }) =>
-                            receivedApps.find(
-                                a => a.name === app && a.source === 'official'
-                            )
+                        const appInfo = await apps
+                            .getDownloadableApps()
+                            .then(({ apps: receivedApps }) =>
+                                receivedApps.find(
+                                    a =>
+                                        a.name === app &&
+                                        a.source === 'official'
+                                )
+                            );
+
+                        if (appInfo && !apps.isInstalled(appInfo)) {
+                            setIsInstalling(true);
+                            onInstallStart?.();
+                            await apps.installDownloadableApp(appInfo);
+                            setIsInstalling(false);
+                            onInstallFinish?.();
+                        }
+
+                        const deviceOptions = path
+                            ? { serialPortPath: path }
+                            : { serialNumber: device.serialNumber };
+
+                        openWindow.openApp(
+                            {
+                                name: app,
+                                source: 'official',
+                            },
+                            {
+                                device: deviceOptions,
+                            }
                         );
 
-                    if (appInfo && !apps.isInstalled(appInfo)) {
-                        setIsInstalling(true);
-                        onInstallStart?.();
-                        await apps.installDownloadableApp(appInfo);
-                        setIsInstalling(false);
-                        onInstallFinish?.();
-                    }
-
-                    const deviceOptions = path
-                        ? { serialPortPath: path }
-                        : { serialNumber: device.serialNumber };
-
-                    openWindow.openApp(
-                        {
-                            name: app,
-                            source: 'official',
-                        },
-                        {
-                            device: deviceOptions,
-                        }
-                    );
-
-                    telemetry.sendEvent('Opened evaluation app', {
-                        app,
-                    });
-                }}
+                        telemetry.sendEvent('Opened evaluation app', {
+                            app,
+                        });
+                    }}
                     className="tw-shrink-0"
                 >
                     {isInstalling ? 'Installing...' : `Open ${displayName}`}

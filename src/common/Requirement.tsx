@@ -48,10 +48,12 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                         />
                         {/* Media images */}
                         <div className="tw-flex tw-flex-row">
-                        {media.path.map((imgSrc, imgIdx) => (
-                                <div className="tw-flex tw-flex-col tw-items-center tw-w-full">
+                            {media.path.map((imgSrc, imgIdx) => (
+                                <div
+                                    key={imgSrc}
+                                    className="tw-flex tw-w-full tw-flex-col tw-items-center"
+                                >
                                     <img
-                                        key={imgSrc + imgIdx}
                                         src={imgSrc}
                                         alt={media.alt[imgIdx]}
                                         className="tw-h-[190px]"
@@ -60,7 +62,7 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                                         {media.alt[imgIdx]}
                                     </div>
                                 </div>
-                        ))}
+                            ))}
                         </div>
                     </div>
                     {/* Media description */}
