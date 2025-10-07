@@ -21,7 +21,15 @@ import { getError, getResponse, reset, setError } from './verifySlice';
 
 import './cursor.scss';
 
-export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
+export default ({
+    vComIndex,
+    regex,
+    ref,
+}: {
+    vComIndex: number;
+    regex: RegExp;
+    ref: string;
+}) => {
     const choice = useAppSelector(getChoiceUnsafely);
     const dispatch = useAppDispatch();
     const device = useAppSelector(getSelectedDeviceUnsafely);
@@ -60,10 +68,30 @@ export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
         if (!validResponse) {
             const [, match] = (response || '').match(regex) ?? [];
             if (match) {
+                // Extract Product Name from the response
+                const productNameMatch = (response || '').match(
+                    /Product Name:\s*(.+)/
+                );
+                if (productNameMatch) {
+                    const productName = productNameMatch[1].trim();
+                    // Verify Product Name matches the expected ref value
+                    if (productName !== ref) {
+                        if (cleanup) cleanup();
+                        if (errorTimeout) clearTimeout(errorTimeout);
+                        setCleanup(undefined);
+                        setErrorTimeout(undefined);
+                        dispatch(
+                            setError(
+                                `Product Name mismatch: Expected "${ref}" but got "${productName}"`
+                            )
+                        );
+                        return;
+                    }
+                }
                 setValidResponse(match);
             }
         }
-    }, [response, validResponse, regex, errorTimeout, cleanup]);
+    }, [response, validResponse, regex, errorTimeout, cleanup, ref, dispatch]);
 
     useEffect(() => {
         if (validResponse && cleanup && errorTimeout) {

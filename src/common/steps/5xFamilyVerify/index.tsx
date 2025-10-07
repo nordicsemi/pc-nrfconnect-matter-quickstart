@@ -16,7 +16,7 @@ export default (
             steps: config.reduce(
                 (acc, next) => ({
                     ...acc,
-                    [next.ref]: () => Verify({ ...next.config }),
+                    [next.ref]: () => Verify({ ...next.config, ref: next.ref }),
                 }),
                 {}
             ),
