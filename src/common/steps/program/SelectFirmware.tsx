@@ -14,7 +14,6 @@ import { selectFirmwareWithoutProgrammingOption } from '../../../app/devOptions'
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import {
     Choice,
-    getChoiceUnsafely,
     getSelectedDeviceUnsafely,
     setChoice,
 } from '../../../features/device/deviceSlice';
@@ -22,17 +21,13 @@ import { Back } from '../../Back';
 import Link from '../../Link';
 import { RadioSelect } from '../../listSelect/RadioSelect';
 import Main from '../../Main';
-import { Next, Skip } from '../../Next';
+import { Next } from '../../Next';
 import { startProgramming } from './programEffects';
 
 export default ({ choices }: { choices: Choice[] }) => {
     const dispatch = useAppDispatch();
     const device = useAppSelector(getSelectedDeviceUnsafely);
-    const previouslySelectedChoice = useAppSelector(getChoiceUnsafely);
-
-    const [selected, setSelected] = React.useState<Choice | undefined>(
-        previouslySelectedChoice
-    );
+    const [selected, setSelected] = React.useState<Choice | undefined>();
 
     const items = choices.map(choice => {
         const isSelected = selected?.name === choice.name;
@@ -79,7 +74,6 @@ export default ({ choices }: { choices: Choice[] }) => {
             </Main.Content>
             <Main.Footer>
                 <Back />
-                {!!previouslySelectedChoice && <Skip />}
                 {selectFirmwareWithoutProgrammingOption && (
                     <Next
                         label="Select (Don't program)"

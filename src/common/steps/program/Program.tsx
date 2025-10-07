@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { getChoiceUnsafely } from '../../../features/device/deviceSlice';
 import { Back } from '../../Back';
 import Main from '../../Main';
-import { Next, Skip } from '../../Next';
+import { Next } from '../../Next';
 import { retry } from './programEffects';
 import { getError, getProgrammingProgress, reset } from './programSlice';
 import ProgressIndicators from './ProgressIndicators';
@@ -69,13 +69,10 @@ export default () => {
                     disabled={programming}
                 />
                 {error ? (
-                    <>
-                        <Skip disabled={programming} />
-                        <Next
-                            label={error.buttonText || 'Retry'}
-                            onClick={() => dispatch(retry(error.retryRef))}
-                        />
-                    </>
+                    <Next
+                        label={error.buttonText || 'Retry'}
+                        onClick={() => dispatch(retry(error.retryRef))}
+                    />
                 ) : (
                     <Next disabled={programming} />
                 )}

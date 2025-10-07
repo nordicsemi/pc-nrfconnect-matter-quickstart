@@ -9,13 +9,11 @@ import { IssueBox } from '@nordicsemiconductor/pc-nrfconnect-shared';
 import describeError from '@nordicsemiconductor/pc-nrfconnect-shared/src/logging/describeError';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store';
-import {
-    getChoiceUnsafely,
-    getSelectedDeviceUnsafely,
-} from '../../../features/device/deviceSlice';
+import { getSelectedDeviceUnsafely } from '../../../features/device/deviceSlice';
 import { Back } from '../../Back';
 import Main from '../../Main';
 import { Next } from '../../Next';
+import Verifying from '../../Verifying';
 import runVerification from './serialport';
 import { getError, getResponse, reset, setError } from './verifySlice';
 
@@ -30,7 +28,6 @@ export default ({
     regex: RegExp;
     ref: string;
 }) => {
-    const choice = useAppSelector(getChoiceUnsafely);
     const dispatch = useAppDispatch();
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const response = useAppSelector(getResponse);
@@ -112,25 +109,49 @@ export default ({
         return 'Verifying';
     };
 
+    const filterAndCleanLogs = (logs: string) => {
+        const relevantKeywords = [
+            'Serial Number',
+            'Vendor Id',
+            'Product Id',
+            'Product Name',
+            'Hardware Version',
+            'Setup Pin Code',
+            'Setup Discriminator',
+        ];
+
+        return logs
+            .split('\n')
+            .filter(line =>
+                relevantKeywords.some(keyword => line.includes(keyword))
+            )
+            .map(line =>
+                // Remove the "I: <number> [DL] " prefix pattern
+                line.replace(/^I:\s*\d+\s*\[DL\]\s*/, '')
+            )
+            .filter(Boolean);
+    };
+
     return (
         <Main>
             <Main.Content heading={getHeading()}>
-                <p>Serial output from the {choice.name} sample:</p>
-                <div className="alt-font tw-relative tw-mt-4 tw-bg-gray-700 tw-p-4 tw-text-gray-50">
-                    {!validResponse && <div className="cursor" />}
-                    {validResponse
-                        ?.split('\n')
-                        .filter(Boolean)
-                        .map(line => (
-                            <p key={line}>{line}</p>
-                        ))}
-                    {validResponse && (
-                        <div className="tw-absolute tw-right-4 tw-top-1/2 tw--translate-y-1/2">
-                            <span className="mdi mdi-circle tw-top-0.5 tw-z-0 tw-text-4xl tw-text-green" />
-                            <span className="mdi-check-bold mdi tw-absolute tw-left-1.5 tw-top-1 tw-z-10 tw-text-2xl tw-text-white" />
+                {waiting && <Verifying />}
+                {validResponse && (
+                    <div className="tw-flex tw-flex-col tw-gap-1">
+                        <div className="tw-font-medium">
+                            Serial output from the sample:
                         </div>
-                    )}
-                </div>
+                        <div className="alt-font tw-relative tw-mt-4 tw-bg-gray-700 tw-p-4 tw-text-gray-50">
+                            {filterAndCleanLogs(validResponse).map(line => (
+                                <p key={line}>{line}</p>
+                            ))}
+                            <div className="tw-absolute tw-right-4 tw-top-1/2 tw--translate-y-1/2">
+                                <span className="mdi mdi-circle tw-top-0.5 tw-z-0 tw-text-4xl tw-text-green" />
+                                <span className="mdi-check-bold mdi tw-absolute tw-left-1.5 tw-top-1 tw-z-10 tw-text-2xl tw-text-white" />
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {error && (
                     <div className="tw-pt-4">
                         <IssueBox
