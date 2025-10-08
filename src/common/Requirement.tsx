@@ -4,10 +4,9 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-import React, { ReactElement } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import Link from './Link';
 import { overWriteA, overwriteEm, overwriteInfoImg } from './Markdown';
 
 interface MediaProps {
@@ -15,22 +14,20 @@ interface MediaProps {
     alt: string[];
     text: string;
     description: string;
-    visit_note: ReactElement;
+    visit_note: string;
 }
 
 interface RequirementProps {
-    mediaSrc: MediaProps[];
-    note?: string;
-    footer?: string;
+    content: MediaProps[];
 }
 
-const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
+const Requirement = ({ content }: RequirementProps) => (
     // Container
     <div className="tw-flex tw-flex-col tw-gap-8">
         {/* Media container */}
         <div className="tw-flex tw-flex-row tw-gap-8">
             {/* Media items */}
-            {mediaSrc.map((media, index) => (
+            {content.map((media, index) => (
                 <div
                     key={
                         typeof media.text === 'string'
@@ -85,26 +82,21 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                         </ReactMarkdown>
                         {/* Media visit note */}
                         {media.visit_note && (
-                            <div className="tw-align-text-top tw-font-light">
+                            <ReactMarkdown
+                                className="tw-align-text-top tw-font-light"
+                                components={{
+                                    a: overWriteA,
+                                    em: overwriteEm,
+                                    img: overwriteInfoImg,
+                                }}
+                            >
                                 {media.visit_note}
-                            </div>
+                            </ReactMarkdown>
                         )}
                     </div>
                 </div>
             ))}
         </div>
-        {/* Note */}
-        {note && (
-            <div className="tw-pt-0.5 tw-text-xs">
-                <Link label={note} href={note} color="tw-text-primary" />
-            </div>
-        )}
-        {/* Footer */}
-        {footer && (
-            <div className="tw-pt-0.5 tw-text-xs">
-                <Link label={footer} href={footer} color="tw-text-primary" />
-            </div>
-        )}
     </div>
 );
 

@@ -23,62 +23,26 @@ const EcosystemRequirementsStep = () => {
                     this ecosystem:"
             >
                 <Requirement
-                    mediaSrc={[
+                    content={[
                         {
                             path: [ecosystem?.hubImage],
                             alt: [ecosystem?.hubName],
                             text: 'Home Hub with Thread Border Router support',
                             description: `This guide uses **${ecosystem?.hubName}** device, but you can use any other Home Hub compatible with **${ecosystem?.name}** that supports Matter and Thread Border Router.`,
-                            visit_note: (
-                                <>
-                                    Visit the{' '}
-                                    {ecosystem?.hubManual ? (
-                                        <a
-                                            href={ecosystem.hubManual}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="tw-font-italic tw-text-primary"
-                                        >
-                                            {ecosystem.name}
-                                        </a>
-                                    ) : (
-                                        ''
-                                    )}{' '}
-                                    webpage to learn more about the Matter and
-                                    supported Home Hub devices.
-                                </>
-                            ),
+                            visit_note: `Visit the [${ecosystem?.name}](${
+                                ecosystem?.hubManual ?? '#'
+                            }) webpage to learn more about the Matter and supported Home Hub devices.`,
                         },
                         {
                             path: ecosystem?.appImage,
                             alt: ecosystem.appImageAlt,
                             text: `Smartphone with **${ecosystem?.name}** Application installed`,
                             description: `The **${ecosystem?.name}** app supports **${ecosystem.appSystemSupport}**.`,
-                            visit_note: (
-                                <div>
-                                    Visit the{' '}
-                                    {ecosystem?.appManual ? (
-                                        <a
-                                            href={ecosystem.appManual}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{
-                                                fontStyle: 'italic',
-                                                color: 'rgb(0, 169, 206)',
-                                            }}
-                                        >
-                                            {ecosystem.name}
-                                        </a>
-                                    ) : (
-                                        ecosystem?.name
-                                    )}{' '}
-                                    webpage to learn more about the application.
-                                </div>
-                            ),
+                            visit_note: `Visit the [${ecosystem?.name}](${
+                                ecosystem?.appManual ?? '#'
+                            }) webpage to learn more about the application.`,
                         },
                     ]}
-                    note=""
-                    footer=""
                 />
             </Main.Content>
             <Main.Footer>
