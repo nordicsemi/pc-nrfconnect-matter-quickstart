@@ -54,9 +54,9 @@ export const commonLearningResources: ResourceProps[] = [
 
 export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
     {
-        label: 'CHIP Tool [Linux only]',
+        label: 'CHIP Tool',
         description:
-            'A command-line controller for Matter devices. Use CHIP Tool to commission, control, and interact with Matter-enabled devices during development and testing.',
+            'A command-line controller for Matter devices. Use CHIP Tool to commission, control, and interact with Matter-enabled devices during development and testing. This tool is available only for Linux systems.',
         downloadLink: {
             label: 'CHIP Tool',
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-tool_x64`,
@@ -67,9 +67,9 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
     },
     {
-        label: 'Matter OTA provider App [Linux only]',
+        label: 'Matter OTA provider App',
         description:
-            'A command-line application for providing Matter Over-the-Air (OTA) firmware updates. Use this tool to serve firmware images and manage OTA update processes for Matter devices.',
+            'A command-line application for providing Matter Over-the-Air (OTA) firmware updates. Use this tool to serve firmware images and manage OTA update processes for Matter devices. This tool is available only for Linux systems.',
         downloadLink: {
             label: 'Matter OTA provider App',
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-ota-provider-app_x64`,
@@ -80,9 +80,9 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
     },
     {
-        label: 'CHIP Cert application [Linux only]',
+        label: 'CHIP Cert application',
         description:
-            'A utility for generating, managing, and verifying Matter certificates. Essential for setting up device attestation and secure communication in Matter networks.',
+            'A utility for generating, managing, and verifying Matter certificates. Essential for setting up device attestation and secure communication in Matter networks. This tool is available only for Linux systems.',
         downloadLink: {
             label: 'CHIP Cert application',
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-cert_x64`,

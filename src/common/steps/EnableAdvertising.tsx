@@ -57,7 +57,7 @@ const EnableAdvertisingStep = (advertisingData: AdvertisingData) => {
                                         <img
                                             src={enablePairingImage}
                                             alt={`Pairing with ${choice.name}`}
-                                            className="tw-h-auto tw-max-w-[600px]"
+                                            className="tw-h-auto tw-max-h-[300px] tw-max-w-full tw-object-contain"
                                         />
                                     </div>
                                 );
