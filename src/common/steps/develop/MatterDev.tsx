@@ -24,16 +24,11 @@ export default ({
     const dispatch = useAppDispatch();
     return (
         <Main>
-            <Main.Content heading="Prepare for developing Matter applications">
-                <div className="tw-mb-6 tw-flex tw-flex-col tw-gap-6">
-                    <p>
-                        Kickstart your Matter application development with these
-                        tools and resources designed to streamline your workflow
-                        and unlock the full potential of your device.
-                    </p>
-                </div>
-                <div style={{ height: '10px' }} />
-                <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-6">
+            <Main.Content
+                heading="Prepare for developing Matter applications"
+                subHeading="Kickstart your Matter application development with these tools and resources designed to streamline your workflow and unlock the full potential of your device."
+            >
+                <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-0.5">
                     {resources.map(props => (
                         <ResourceWithDownloadAndGuide
                             {...props}

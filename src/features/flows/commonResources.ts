@@ -54,7 +54,7 @@ export const commonLearningResources: ResourceProps[] = [
 
 export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
     {
-        label: 'CHIP Tool [Linux]',
+        label: 'CHIP Tool [Linux only]',
         description:
             'A command-line controller for Matter devices. Use CHIP Tool to commission, control, and interact with Matter-enabled devices during development and testing.',
         downloadLink: {
@@ -62,12 +62,12 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-tool_x64`,
         },
         guideLink: {
-            label: 'CHIP Tool Guide',
+            label: 'CHIP Tool user guide',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/matter/chip_tool_guide.html',
         },
     },
     {
-        label: 'Matter OTA provider App [Linux]',
+        label: 'Matter OTA provider App [Linux only]',
         description:
             'A command-line application for providing Matter Over-the-Air (OTA) firmware updates. Use this tool to serve firmware images and manage OTA update processes for Matter devices.',
         downloadLink: {
@@ -75,12 +75,12 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-ota-provider-app_x64`,
         },
         guideLink: {
-            label: 'Matter OTA Guide',
+            label: 'Matter OTA user guide',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/overview/dfu.html',
         },
     },
     {
-        label: 'CHIP Cert application [Linux]',
+        label: 'CHIP Cert application [Linux only]',
         description:
             'A utility for generating, managing, and verifying Matter certificates. Essential for setting up device attestation and secure communication in Matter networks.',
         downloadLink: {
@@ -88,12 +88,12 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-cert_x64`,
         },
         guideLink: {
-            label: 'CHIP Cert application Guide',
+            label: 'CHIP Cert application user guide',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/matter/README.html',
         },
     },
     {
-        label: 'ZapTool [Any system]',
+        label: 'ZapTool',
         description:
             'A graphical tool for creating, editing, and managing Matter data models and clusters. Use ZapTool to define device capabilities and generate configuration files for your Matter applications.',
         downloadLink: {
@@ -101,7 +101,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             href: `https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/tools.html#installing_the_zap_tool`,
         },
         guideLink: {
-            label: 'ZapTool Guide',
+            label: 'ZapTool user guide',
             href: 'https://docs.silabs.com/zap-tool/1.0.0/zap-users-guide/',
         },
         buttonLabel: 'See download instructions',
@@ -115,7 +115,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             href: `https://devzone.nordicsemi.com/power/w/opp/16/online-power-profiler-for-matter-over-thread`,
         },
         guideLink: {
-            label: 'Online Power Profiler for Matter over Thread',
+            label: 'Online Power Profiler for Matter over Thread user guide',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/tools.html#online_power_profiler_for_matter_over_thread',
         },
         buttonLabel: 'Open the tool in your browser',

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import {
     apps,
     Button,
+    classNames,
     openWindow,
     telemetry,
 } from '@nordicsemiconductor/pc-nrfconnect-shared';
@@ -36,7 +37,11 @@ export interface ResourcesWithdDownloadAndGuide {
 }
 
 export const Resource = ({ label, description, link }: ResourceProps) => (
-    <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+    <div
+        className={classNames(
+            'tw-flex tw-w-full tw-flex-row tw-items-center tw-justify-between tw-gap-px tw-bg-gray-50 tw-p-4 tw-text-gray-700 hover:tw-bg-gray-100'
+        )}
+    >
         <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
             <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                 <b>{label}</b>
@@ -68,7 +73,11 @@ export const ResourceWithDownloadAndGuide = ({
         }
     };
     return (
-        <div className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-gap-4 tw-py-2">
+        <div
+            className={classNames(
+                'tw-flex tw-w-full tw-flex-row tw-items-center tw-justify-between tw-gap-px tw-bg-gray-50 tw-p-4 tw-text-gray-700 hover:tw-bg-gray-100'
+            )}
+        >
             <div className="tw-flex tw-flex-1 tw-flex-row tw-items-start tw-justify-start">
                 <div className="tw-w-64 tw-flex-shrink-0 tw-pr-5">
                     <b>{label}</b>
