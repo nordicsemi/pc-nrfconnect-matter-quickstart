@@ -17,6 +17,7 @@ import {
     getSelectedDeviceUnsafely,
     setChoice,
 } from '../../../features/device/deviceSlice';
+import { SampleWithRefAndDescription } from '../../../features/flows/commonResources';
 import { Back } from '../../Back';
 import Link from '../../Link';
 import { RadioSelect } from '../../listSelect/RadioSelect';
@@ -24,7 +25,13 @@ import Main from '../../Main';
 import { Next } from '../../Next';
 import { startProgramming } from './programEffects';
 
-export default ({ choices }: { choices: Choice[] }) => {
+export default ({
+    choices,
+    sampleCommonConfig,
+}: {
+    choices: Choice[];
+    sampleCommonConfig: SampleWithRefAndDescription[];
+}) => {
     const dispatch = useAppDispatch();
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const [selected, setSelected] = React.useState<Choice | undefined>();
@@ -40,7 +47,13 @@ export default ({ choices }: { choices: Choice[] }) => {
                         <b>{choice.name}</b>
                     </div>
                     <div className="tw-flex tw-flex-col tw-justify-start">
-                        <div className="tw-text-sm">{choice.description}</div>
+                        <div className="tw-text-sm">
+                            {
+                                sampleCommonConfig.find(
+                                    config => config.ref === choice.name
+                                )?.description
+                            }
+                        </div>
                         {choice.documentation && (
                             <div className="tw-pt-px tw-text-xs">
                                 <Link
@@ -62,7 +75,10 @@ export default ({ choices }: { choices: Choice[] }) => {
 
     return (
         <Main>
-            <Main.Content heading="Select an application to program">
+            <Main.Content
+                heading="Select an application to program"
+                subHeading="Use one of the following samples as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network."
+            >
                 <RadioSelect
                     items={items}
                     onSelect={item =>

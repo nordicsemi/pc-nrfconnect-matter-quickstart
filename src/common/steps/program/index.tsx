@@ -8,21 +8,34 @@ import React from 'react';
 
 import { useAppSelector } from '../../../app/store';
 import { Choice } from '../../../features/device/deviceSlice';
+import { SampleWithRefAndDescription } from '../../../features/flows/commonResources';
 import Program from './Program';
 import { getProgrammingProgress } from './programSlice';
 import SelectFirmware from './SelectFirmware';
 
-const ProgramStep = ({ choices }: { choices: Choice[] }) => {
+const ProgramStep = ({
+    choices,
+    sampleCommonConfig,
+}: {
+    choices: Choice[];
+    sampleCommonConfig: SampleWithRefAndDescription[];
+}) => {
     const hasStartedProgramming = !!useAppSelector(getProgrammingProgress);
 
     return hasStartedProgramming ? (
         <Program />
     ) : (
-        <SelectFirmware choices={choices} />
+        <SelectFirmware
+            choices={choices}
+            sampleCommonConfig={sampleCommonConfig}
+        />
     );
 };
 
-export default (choices: Choice[]) => ({
+export default (
+    choices: Choice[],
+    sampleCommonConfig: SampleWithRefAndDescription[]
+) => ({
     name: 'Program',
-    component: () => ProgramStep({ choices }),
+    component: () => ProgramStep({ choices, sampleCommonConfig }),
 });

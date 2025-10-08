@@ -21,8 +21,8 @@ import { Choice } from '../../device/deviceSlice';
 import {
     appsCommonConfig,
     commonLearningResources,
-    developCommonConfig,
     matterDevResources,
+    sampleCommonConfig,
 } from '../commonResources';
 import { AdvertisingData } from '../pairingConfig';
 
@@ -36,8 +36,6 @@ const programConfig = [
     {
         name: 'Matter Door Lock',
         type: 'jlink',
-        description:
-            'This door lock sample demonstrates the usage of the Matter application layer to build a door lock device with one basic bolt. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Door Lock',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
@@ -56,8 +54,6 @@ const programConfig = [
     {
         name: 'Matter Light Bulb',
         type: 'jlink',
-        description:
-            'This light bulb sample demonstrates the usage of the Matter application layer to build a white dimmable light bulb device. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Light Bulb',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
@@ -76,8 +72,6 @@ const programConfig = [
     {
         name: 'Matter Temperature Sensor',
         type: 'jlink',
-        description:
-            'This temperature sensor sample demonstrates the usage of the Matter application layer to build a temperature sensor device. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Temperature Sensor',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
@@ -96,8 +90,6 @@ const programConfig = [
     {
         name: 'Matter Contact Sensor',
         type: 'jlink',
-        description:
-            'This contact sensor sample demonstrates the usage of the Matter application layer to build a contact sensor device. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Contact Sensor',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html',
@@ -172,7 +164,7 @@ export default {
     flow: [
         Info(infoConfig),
         Rename(),
-        Program(programConfig),
+        Program(programConfig, sampleCommonConfig),
         Verify(verifyConfig),
         SelectEcosystem(),
         EcosystemRequirements(),
@@ -181,7 +173,7 @@ export default {
         Pairing(),
         Interaction({ led: 1, button: 1 }),
         Learn(learnConfig),
-        Develop(developCommonConfig, matterDevResources),
+        Develop(sampleCommonConfig, matterDevResources),
         Apps(appsCommonConfig),
     ],
 };

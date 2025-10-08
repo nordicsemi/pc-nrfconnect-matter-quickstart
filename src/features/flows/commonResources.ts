@@ -10,6 +10,12 @@ import {
     ResourcesWithdDownloadAndGuide,
 } from '../../common/Resource';
 
+export interface SampleWithRefAndDescription {
+    ref: string;
+    sampleSource: string;
+    description: string;
+}
+
 export const commonLearningResources: ResourceProps[] = [
     {
         label: 'nRF Connect SDK and Zephyr',
@@ -125,22 +131,36 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
     },
 ];
 
-export const developCommonConfig = [
+export const sampleCommonConfig = [
     {
         ref: 'Matter Door Lock',
+        description:
+            'This sample demonstrates the usage of the Matter application layer to create a door lock device with one basic bolt.',
         sampleSource: 'nrf/samples/matter/lock',
     },
     {
         ref: 'Matter Light Bulb',
+        description:
+            'This sample demonstrates the usage of the Matter application layer to create a dimmable light bulb device.',
         sampleSource: 'nrf/samples/matter/light_bulb',
     },
     {
         ref: 'Matter Weather Station',
+        description:
+            'This sample demonstrates the usage of the Matter application layer to create a weather station device.',
         sampleSource: 'nrf/applications/weather_station',
     },
     {
         ref: 'Matter Temperature Sensor',
+        description:
+            'This sample demonstrates the usage of the Matter application layer to create a temperature sensor device.',
         sampleSource: 'nrf/samples/matter/temperature_sensor',
+    },
+    {
+        ref: 'Matter Contact Sensor',
+        description:
+            'This sample demonstrates the usage of the Matter application layer to create a contact sensor device.',
+        sampleSource: 'nrf/samples/matter/contact_sensor',
     },
 ];
 

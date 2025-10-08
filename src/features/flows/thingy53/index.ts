@@ -23,8 +23,8 @@ import { Choice } from '../../device/deviceSlice';
 import {
     appsCommonConfig,
     commonLearningResources,
-    developCommonConfig,
     matterDevResources,
+    sampleCommonConfig,
 } from '../commonResources';
 import { AdvertisingData } from '../pairingConfig';
 
@@ -103,7 +103,7 @@ export default {
         Rename(),
         VerifyPartitions(),
         VerifyBootloader(),
-        Program(programConfig),
+        Program(programConfig, sampleCommonConfig),
         Verify(verifyConfig),
         SelectEcosystem(),
         EcosystemRequirements(),
@@ -112,7 +112,7 @@ export default {
         Pairing(),
         Interaction({}),
         Learn(learnConfig),
-        Develop(developCommonConfig, matterDevResources),
+        Develop(sampleCommonConfig, matterDevResources),
         Apps(appsCommonConfig),
     ],
 };
