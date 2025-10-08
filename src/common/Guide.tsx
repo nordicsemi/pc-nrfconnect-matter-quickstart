@@ -11,12 +11,12 @@ import { EcosystemConfig } from '../features/flows/ecosystemConfig';
 import Video from './Video';
 
 interface GuideProps {
-    ecosystem: EcosystemConfig;
+    steps: string[];
+    ecosystem?: EcosystemConfig;
     qrcode?: string;
     qrcodeStep?: number;
     manualCode?: string;
-    steps: string[];
-    mediaSrc: string;
+    mediaSrc?: string;
 }
 
 const NoteGuide = ({ ecosystem }: { ecosystem: EcosystemConfig }) => (
@@ -100,28 +100,25 @@ const Guide = ({
                 </div>
             </div>
             {/* video */}
-            <Video mediaSrc={mediaSrc} />
-            {/* <NoticeBox
-                    mdiIcon="mdi-lightbulb-outline"
-                    color="tw-text-primary"
-                    title="Tip"
-                    content={<div> {Tip()}</div>}
-                />
-            </div> */}
+            {mediaSrc && <Video mediaSrc={mediaSrc} />}
         </div>
         {/* notes */}
-        <NoticeBox
-            mdiIcon="mdi-information-outline"
-            color="tw-text-primary"
-            title="Note"
-            content={<div> {NoteGuide({ ecosystem })}</div>}
-        />
-        <NoticeBox
-            mdiIcon="mdi-information-outline"
-            color="tw-text-primary"
-            title="Note"
-            content={<div> {NoteVideo({ ecosystem })}</div>}
-        />
+        {ecosystem && (
+            <>
+                <NoticeBox
+                    mdiIcon="mdi-information-outline"
+                    color="tw-text-primary"
+                    title="Note"
+                    content={<div> {NoteGuide({ ecosystem })}</div>}
+                />
+                <NoticeBox
+                    mdiIcon="mdi-information-outline"
+                    color="tw-text-primary"
+                    title="Note"
+                    content={<div> {NoteVideo({ ecosystem })}</div>}
+                />
+            </>
+        )}
     </div>
 );
 

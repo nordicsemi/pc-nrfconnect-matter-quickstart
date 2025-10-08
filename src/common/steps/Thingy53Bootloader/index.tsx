@@ -13,6 +13,7 @@ import {
     goToPreviousStep,
 } from '../../../features/flow/flowSlice';
 import { Back } from '../../Back';
+import Guide from '../../Guide';
 import Main from '../../Main';
 
 let previous = false;
@@ -47,38 +48,17 @@ const VerifyBootloaderStep = () => {
                 heading="Entering bootloader mode"
                 subHeading="Make sure that the device is in bootloader mode, which is required to program it using Device Firmware Upgrade."
             >
-                <br />
-                <div>
-                    <div className="guide">
-                        {guideManual.map((guide, index) => (
-                            <div
-                                key={
-                                    typeof guide === 'string'
-                                        ? guide.slice(0, 32)
-                                        : index
-                                }
-                            >
-                                <span className="guide-index">
-                                    {index + 1}.
-                                </span>{' '}
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: guide,
-                                    }}
-                                />
-                            </div>
-                        ))}
+                <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-8">
+                    <Guide steps={guideManual} />
+                    <img
+                        src="../resources/devices/images/thingy53_bootloader_mode.png"
+                        alt="Enabling bootloader mode"
+                        className="tw-mx-5 tw-mt-[10px] tw-max-h-[200px] tw-w-auto tw-rounded-lg"
+                    />
+                    <div className="tw-text-sm tw-font-light">
+                        Once the device is in bootloader mode, the app will
+                        automatically proceed to the next step.
                     </div>
-                    <br />
-                    <div className="additional-dk-image-content">
-                        <img
-                            src="../resources/devices/images/thingy53_bootloader_mode.png"
-                            alt="Enabling bootloader mode"
-                        />
-                    </div>
-                    <br />
-                    Once the device is in bootloader mode, the app will
-                    automatically proceed to the next step.
                 </div>
             </Main.Content>
             <Main.Footer>
