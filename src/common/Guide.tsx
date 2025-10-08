@@ -5,9 +5,11 @@
  */
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { NoticeBox } from '@nordicsemiconductor/pc-nrfconnect-shared';
 
 import { EcosystemConfig } from '../features/flows/ecosystemConfig';
+import { overWriteA, overwriteEm, overwriteInfoImg } from './Markdown';
 import Video from './Video';
 
 interface GuideProps {
@@ -20,22 +22,15 @@ interface GuideProps {
 }
 
 const NoteGuide = ({ ecosystem }: { ecosystem: EcosystemConfig }) => (
-    <div>
-        {' '}
-        This guide uses <b>{ecosystem?.hubName}</b> device, but you can use any
-        other Home Hub compatible with <b>{ecosystem?.name}</b> that supports
-        Matter and Thread Border Router.
-    </div>
+    <ReactMarkdown>
+        {`This guide uses **${ecosystem?.hubName}** device, but you can use any other Home Hub compatible with **${ecosystem?.name}** that supports Matter and Thread Border Router.`}
+    </ReactMarkdown>
 );
 
 const NoteVideo = ({ ecosystem }: { ecosystem: EcosystemConfig }) => (
-    <div>
-        {' '}
-        The video has been recorded with version{' '}
-        <b>{ecosystem?.ecosystemVersion}</b> of the <b>{ecosystem?.name}</b>{' '}
-        application. Please note that the user interface may lookslightly
-        different if you are using another version on your device.
-    </div>
+    <ReactMarkdown>
+        {`The video has been recorded with version **${ecosystem?.ecosystemVersion}** of the **${ecosystem?.name}** application. Please note that the user interface may look slightly different if you are using another version on your device.`}
+    </ReactMarkdown>
 );
 
 const Guide = ({
@@ -64,27 +59,31 @@ const Guide = ({
                             }
                         >
                             <div className="tw-flex tw-flex-row tw-gap-2">
-                                <div className="tw-text-base tw-font-bold">
+                                <div className="tw-w-8 tw-shrink-0 tw-text-center tw-text-base tw-font-bold">
                                     {index + 1}.
                                 </div>
-                                <div
+                                <ReactMarkdown
                                     className="tw-text-base tw-font-light"
-                                    dangerouslySetInnerHTML={{
-                                        __html: step,
+                                    components={{
+                                        a: overWriteA,
+                                        em: overwriteEm,
+                                        img: overwriteInfoImg,
                                     }}
-                                />
+                                >
+                                    {step}
+                                </ReactMarkdown>
                             </div>
                             {qrcodeStep && qrcodeStep === index + 1 && (
-                                <div className="tw-justify-left tw-flex tw-flex-row tw-items-center tw-gap-8">
+                                <div className="tw-ml-10 tw-flex tw-flex-row tw-items-center tw-gap-8">
                                     {qrcode && (
                                         <img
                                             src={qrcode}
                                             alt="QR Code"
-                                            className="tw-mx-5 tw-mt-[10px] tw-max-h-[100px] tw-w-auto tw-rounded-lg"
+                                            className="tw-mt-[10px] tw-max-h-[100px] tw-w-auto tw-rounded-lg"
                                         />
                                     )}
                                     {manualCode && (
-                                        <div className="tw-items-left tw-justify-left tw-flex tw-flex-col tw-gap-1">
+                                        <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-1">
                                             <div className="tw-font-bold tw-text-primary">
                                                 Manual Code
                                             </div>
@@ -109,13 +108,13 @@ const Guide = ({
                     mdiIcon="mdi-information-outline"
                     color="tw-text-primary"
                     title="Note"
-                    content={<div> {NoteGuide({ ecosystem })}</div>}
+                    content={<NoteGuide ecosystem={ecosystem} />}
                 />
                 <NoticeBox
                     mdiIcon="mdi-information-outline"
                     color="tw-text-primary"
                     title="Note"
-                    content={<div> {NoteVideo({ ecosystem })}</div>}
+                    content={<NoteVideo ecosystem={ecosystem} />}
                 />
             </>
         )}

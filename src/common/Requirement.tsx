@@ -5,8 +5,10 @@
  */
 
 import React, { ReactElement } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import Link from './Link';
+import { overWriteA, overwriteEm, overwriteInfoImg } from './Markdown';
 
 interface MediaProps {
     path: string[];
@@ -40,12 +42,16 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                     {/* Media item */}
                     <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-8">
                         {/* Media text */}
-                        <div
+                        <ReactMarkdown
                             className="tw-text-center tw-font-medium"
-                            dangerouslySetInnerHTML={{
-                                __html: media.text,
+                            components={{
+                                a: overWriteA,
+                                em: overwriteEm,
+                                img: overwriteInfoImg,
                             }}
-                        />
+                        >
+                            {media.text}
+                        </ReactMarkdown>
                         {/* Media images */}
                         <div className="tw-flex tw-flex-row">
                             {media.path.map((imgSrc, imgIdx) => (
@@ -67,12 +73,16 @@ const Requirement = ({ mediaSrc, note, footer }: RequirementProps) => (
                     </div>
                     {/* Media description */}
                     <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-2">
-                        <div
+                        <ReactMarkdown
                             className="tw-align-text-top tw-font-light"
-                            dangerouslySetInnerHTML={{
-                                __html: media.description,
+                            components={{
+                                a: overWriteA,
+                                em: overwriteEm,
+                                img: overwriteInfoImg,
                             }}
-                        />
+                        >
+                            {media.description}
+                        </ReactMarkdown>
                         {/* Media visit note */}
                         {media.visit_note && (
                             <div className="tw-align-text-top tw-font-light">

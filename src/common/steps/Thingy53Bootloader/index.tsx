@@ -23,11 +23,11 @@ const VerifyBootloaderStep = () => {
     const dispatch = useAppDispatch();
     const guideManual = [
         "Remove the top part of the Thingy:53's cover.",
-        'Power off the device using <b>SW1</b> switch.',
-        'Find the small <b>SW2</b> button that is located near the big center button.',
-        'Press and hold the <b>SW2</b> button.',
-        'Power on the device using <b>SW1</b> switch (keep pressing <b>SW2</b> button).',
-        'Release the <b>SW2</b> button.',
+        'Power off the device using **SW1** switch.',
+        'Find the small **SW2** button that is located near the big center button.',
+        'Press and hold the **SW2** button.',
+        'Power on the device using **SW1** switch (keep pressing **SW2** button).',
+        'Release the **SW2** button.',
     ];
 
     useEffect(() => {
