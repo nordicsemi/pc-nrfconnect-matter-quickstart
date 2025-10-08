@@ -10,25 +10,9 @@ import path from 'path';
 
 import { getImageFolder } from '../../features/device/deviceGuides';
 import { Back } from '../Back';
-import Link from '../Link';
 import Main from '../Main';
+import { overWriteA, overwriteEm, overwriteInfoImg } from '../Markdown';
 import { Next } from '../Next';
-
-const overWriteA = ({
-    href,
-    children,
-}: {
-    href?: string;
-    children?: React.ReactNode;
-}) => <Link color="tw-text-primary" label={children} href={href || ''} />;
-
-const overwriteEm = ({ children }: { children: React.ReactNode }) => (
-    <em className="tw-font-light">{children}</em>
-);
-
-const overWriteImg = ({ src, alt }: { src?: string; alt?: string }) => (
-    <img src={src} alt={alt} />
-);
 
 interface Props {
     title: string;
@@ -42,7 +26,7 @@ const InfoStep = ({ title, markdownContent }: Props) => (
                 components={{
                     a: overWriteA,
                     em: overwriteEm,
-                    img: overWriteImg,
+                    img: overwriteInfoImg,
                 }}
                 transformImageUri={src =>
                     src.startsWith('http')
