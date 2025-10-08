@@ -62,7 +62,8 @@
     "devDependencies": {
         "@nordicsemiconductor/pc-nrfconnect-shared": "^227.0.0",
         "@types/qrcode": "^1.5.5",
+        "cbor": "^10.0.10",
         "qrcode": "^1.5.3",
-        "cbor": "^10.0.10"
+        "remark-gfm": "^3.0.1"
     }
 }
