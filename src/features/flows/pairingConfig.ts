@@ -95,8 +95,6 @@ const googleHomeGuideStartBase = [
     'Wait for the device to be added',
     'If the prompt about the device not being certified appears, tap **Set up anyway**',
     'Once device is connected, tap **Done**',
-    'Select a location for the device, set the name and tap **Next**',
-    'Create a unique name for the device and tap **Next**',
 ];
 
 const googleHomeGuideEndBase = [
@@ -147,6 +145,8 @@ export const pairingConfig: PairingConfig[] = [
                 qrcodeStep: 5,
                 guide: [
                     ...googleHomeGuideStartBase,
+                    'Select a location for the device, set the name and tap **Next**',
+                    'Create a unique name for the device and tap **Next**',
                     'Set a new passcode and tap **Continue**, or skip this step by tapping **Skip**',
                     'Tap **Done**',
                     ...googleHomeGuideEndBase,
@@ -190,7 +190,12 @@ export const pairingConfig: PairingConfig[] = [
             {
                 name: 'Google Home',
                 qrcodeStep: 5,
-                guide: [...googleHomeGuideStartBase, ...googleHomeGuideEndBase],
+                guide: [
+                    ...googleHomeGuideStartBase,
+                    'Select a location for the device, set the name and tap **Next**',
+                    'Create a unique name for the device and tap **Next**',
+                    ...googleHomeGuideEndBase,
+                ],
                 video: '../resources/ecosystems/Google/adding_device/google_bulb.mp4',
             },
         ],
@@ -201,7 +206,7 @@ export const pairingConfig: PairingConfig[] = [
             __dirname,
             '../resources/devices/factory_data/weather_station.hex'
         ),
-        autoAdvertise: false,
+        autoAdvertise: true,
         pairingGuide: [
             {
                 name: 'Apple Home',
@@ -240,15 +245,15 @@ export const pairingConfig: PairingConfig[] = [
                     ...googleHomeGuideEndBase,
                     'Tap on the **not-specified(2)** device tile to open detailed view',
                     'Tap on the **Gear** icon to access settings',
-                    'Tap on the **Name** field and change it to **Humidity Sensor**',
+                    'Tap on the **Name** field and change it to match the device type, for example, **Humidity Sensor**',
                     'Navigate back to the **Devices** page',
                     'Tap on the **not-specified** device tile to open detailed view',
                     'Tap on the **Gear** icon to access settings',
-                    'Tap on the **Name** field and change it to **Pressure Sensor**',
+                    'Tap on the **Name** field and change it to match the device type, for example, **Pressure Sensor**',
                     'Navigate back to the **Devices** page',
                     'Tap on the **Test Thingy:53** device tile to open detailed view',
                     'Tap on the **Gear** icon to access settings',
-                    'Tap on the **Name** field and change it to **Temperature Sensor**',
+                    'Tap on the **Name** field and change it to match the device type, for example, **Temperature Sensor**',
                     'Navigate back to the **Devices** page',
                 ],
                 video: '../resources/ecosystems/Google/adding_device/google_ws.mp4',
@@ -290,7 +295,12 @@ export const pairingConfig: PairingConfig[] = [
             {
                 name: 'Google Home',
                 qrcodeStep: 5,
-                guide: [...googleHomeGuideStartBase, ...googleHomeGuideEndBase],
+                guide: [
+                    ...googleHomeGuideStartBase,
+                    'Select a location for the device, set the name and tap **Next**',
+                    'Create a unique name for the device and tap **Next**',
+                    ...googleHomeGuideEndBase,
+                ],
                 video: '../resources/ecosystems/Google/adding_device/google_temperature.mp4',
             },
         ],
@@ -334,7 +344,12 @@ export const pairingConfig: PairingConfig[] = [
             {
                 name: 'Google Home',
                 qrcodeStep: 5,
-                guide: [...googleHomeGuideStartBase, ...googleHomeGuideEndBase],
+                guide: [
+                    ...googleHomeGuideStartBase,
+                    'Select a location for the device, set the name and tap **Next**',
+                    'Create a unique name for the device and tap **Next**',
+                    ...googleHomeGuideEndBase,
+                ],
                 video: '../resources/ecosystems/Google/adding_device/google_contact.mp4',
             },
         ],

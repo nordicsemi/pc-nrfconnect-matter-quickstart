@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
     describeError,
     IssueBox,
     logger,
 } from '@nordicsemiconductor/pc-nrfconnect-shared';
 
-import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { store, useAppDispatch, useAppSelector } from '../../../app/store';
 import {
     getChoiceUnsafely,
     getSelectedDeviceUnsafely,
@@ -51,9 +51,12 @@ const VerifyStep = ({
     const failed = useAppSelector(getFailed);
     const showSkip = useAppSelector(getShowSkip);
     const [verifying, setVerifying] = useState(false);
-    const deviceConnected = useAppSelector(selectedDeviceIsConnected);
 
     const gotAllResponses = responses.length === commands.length;
+    // Thingy needs a work around for verifying, because there are connection issues after usb stack update.
+    const retryCounterRef = useRef(0);
+    const maxRetries = 5;
+    const retryDelayMs = 2000;
 
     const getHeading = () => {
         if (failed) {
@@ -66,7 +69,17 @@ const VerifyStep = ({
     };
 
     const verify = useCallback(() => {
-        if (!deviceConnected) {
+        const deviceConnectedNow = selectedDeviceIsConnected(store.getState());
+        if (!deviceConnectedNow) {
+            if (retryCounterRef.current < maxRetries) {
+                retryCounterRef.current += 1;
+                // keep verifying true during retries
+                setTimeout(() => verify(), retryDelayMs);
+                return;
+            }
+
+            retryCounterRef.current = 0;
+            logger.error('No development kit connected.');
             dispatch(setFailed('No development kit connected.'));
             setVerifying(false);
             return;
@@ -74,16 +87,23 @@ const VerifyStep = ({
 
         runVerification(commands, path, mode)
             .then(res => {
+                retryCounterRef.current = 0;
                 dispatch(setResponses(res));
+                setVerifying(false);
             })
             .catch(e => {
+                if (retryCounterRef.current < maxRetries) {
+                    retryCounterRef.current += 1;
+                    // keep verifying true during retries
+                    setTimeout(() => verify(), retryDelayMs);
+                    return;
+                }
+                retryCounterRef.current = 0;
                 logger.error(e);
                 dispatch(setFailed(describeError('Failed to verify device.')));
-            })
-            .finally(() => {
                 setVerifying(false);
             });
-    }, [commands, path, mode, dispatch, deviceConnected]);
+    }, [commands, path, mode, dispatch]);
 
     useEffect(() => {
         if (!failed && !gotAllResponses && !verifying) {
@@ -169,11 +189,13 @@ const VerifyConfigLayer = ({
         choiceSettings &&
         device.serialPorts?.[choiceSettings.vComIndex]?.comName;
     if (choiceSettings && path) {
-        return VerifyStep({
-            path,
-            mode: choiceSettings.mode,
-            commands,
-        });
+        return (
+            <VerifyStep
+                path={path}
+                mode={choiceSettings.mode}
+                commands={commands}
+            />
+        );
     }
     logger.error(`Invalid config for ${choice.name}`);
     return null;
@@ -184,5 +206,5 @@ export default (config: {
     commands: Command[];
 }) => ({
     name: 'Verify',
-    component: () => VerifyConfigLayer({ ...config }),
+    component: () => <VerifyConfigLayer {...config} />,
 });

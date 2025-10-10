@@ -13,7 +13,10 @@ import path from 'path';
 
 import { type AppThunk, RootState } from '../../../app/store';
 import { getFirmwareFolder } from '../../../features/device/deviceGuides';
-import { reset } from '../../../features/device/deviceLib';
+import {
+    type DeviceWithSerialnumber,
+    reset,
+} from '../../../features/device/deviceLib';
 import {
     Choice,
     getChoiceUnsafely,
@@ -162,7 +165,8 @@ const jlinkProgram =
 const buttonlessDfuProgram =
     (
         choice: Choice,
-        batch: ReturnType<typeof NrfutilDeviceLib.batch>
+        batch: ReturnType<typeof NrfutilDeviceLib.batch>,
+        device: DeviceWithSerialnumber
     ): AppThunk<RootState, VisibleBatchOperation[]> =>
     dispatch => {
         choice.firmware.forEach(({ file, core }) => {
@@ -171,7 +175,7 @@ const buttonlessDfuProgram =
                 core === 'Modem' ? 'Application' : core,
                 {
                     // Thingy 53 requires a longer netCoreUploadDelay
-                    netCoreUploadDelay: 120,
+                    netCoreUploadDelay: 90,
                 },
                 undefined,
                 {
@@ -205,6 +209,15 @@ const buttonlessDfuProgram =
             );
         });
 
+        if (device.usb?.product === 'Bootloader Thingy:53') {
+            return [
+                ...choice.firmware.map(f => ({
+                    title: `Application and Network cores`,
+                    link: f.link,
+                })),
+            ];
+        }
+
         return [
             ...choice.firmware.map(f => ({
                 title: `${f.core} core`,
@@ -230,7 +243,11 @@ export const startProgramming = (): AppThunk => (dispatch, getState) => {
             break;
         case 'buttonless-dfu':
             displayedBatchOperations = dispatch(
-                buttonlessDfuProgram(choice, batch)
+                buttonlessDfuProgram(
+                    choice,
+                    batch,
+                    device as DeviceWithSerialnumber
+                )
             );
             break;
         default:
