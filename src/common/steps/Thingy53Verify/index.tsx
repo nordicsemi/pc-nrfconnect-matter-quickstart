@@ -116,7 +116,7 @@ const VerifyStep = ({
         <Main>
             <Main.Content
                 heading={getHeading()}
-                subHeading="Automatically verify kit communication with AT commands."
+                subHeading="Automatically verify kit communication with Matter shell commands."
             >
                 <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-4">
                     {commands.map(({ title, copiable = false }, index) => (
