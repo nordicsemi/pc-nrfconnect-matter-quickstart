@@ -21,9 +21,11 @@ const overwriteEm = ({ children }: { children: React.ReactNode }) => (
 );
 
 const overwriteInfoImg = ({ src, alt }: { src?: string; alt?: string }) => (
-    <div className="tw-flex tw-justify-center">
-        <img src={src} alt={alt} className="tw-max-h-[200px] tw-max-w-md" />
-    </div>
+    <img
+        src={src}
+        alt={alt}
+        className="tw-mx-auto tw-block tw-max-h-[200px] tw-max-w-md"
+    />
 );
 
 const TdComponent = (props: React.TdHTMLAttributes<HTMLTableCellElement>) => {
