@@ -5,11 +5,13 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import {
     classNames,
     deviceInfo,
     getPersistedNickname,
     logger,
+    NoticeBox,
 } from '@nordicsemiconductor/pc-nrfconnect-shared';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store';
@@ -29,6 +31,24 @@ import { setIsConnectVisible } from '../flowSlice';
 const isSupportedDevice = (device: DeviceWithSerialnumber) =>
     !!flows[deviceInfo(device).name || ''];
 
+const NoteSupportedDevices = () => (
+    <div className="tw-flex tw-flex-col tw-gap-2">
+        <ReactMarkdown>
+            One of the devices you have connected is not supported by this
+            application. Please connect one of the following supported devices:
+        </ReactMarkdown>
+        <ReactMarkdown>
+            {[
+                '- **nRF52840 DK** (connect via J-Link debugger port)',
+                '- **nRF5340 DK** (connect via J-Link debugger port)',
+                '- **nRF54L15 DK** (connect via J-Link debugger port)',
+                '- **nRF54LM20 DK** (connect via J-Link debugger port)',
+                '- **Thingy:53** (connect via USB port)',
+            ].join('\n')}
+        </ReactMarkdown>
+    </div>
+);
+
 let firstTime = true;
 export default () => {
     const dispatch = useAppDispatch();
@@ -37,6 +57,10 @@ export default () => {
     const [selectedSerialNumber, setSelectedSerialNumber] = useState<
         string | undefined
     >(previouslySelectedDevice?.serialNumber);
+
+    const isNotSupportedDevice = connectedDevices.some(
+        device => !isSupportedDevice(device)
+    );
 
     useEffect(() => {
         if (
@@ -128,6 +152,16 @@ export default () => {
                     items={items}
                     onSelect={item => setSelectedSerialNumber(item.id)}
                 />
+                {isNotSupportedDevice && (
+                    <div className="tw-pt-8">
+                        <NoticeBox
+                            mdiIcon="mdi-information-outline"
+                            color="tw-text-primary"
+                            title="Note"
+                            content={<NoteSupportedDevices />}
+                        />
+                    </div>
+                )}
             </Main.Content>
             <Main.Footer>
                 <Next
