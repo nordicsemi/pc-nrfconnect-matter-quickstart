@@ -36,7 +36,8 @@ const EcosystemRequirementsStep = () => {
                             path: ecosystem?.appImage,
                             alt: ecosystem.appImageAlt,
                             text: `Smartphone with the **${ecosystem?.name}** app installed`,
-                            description: `The **${ecosystem?.name}** app supports **${ecosystem.appSystemSupport}**.`,
+                            description: `The **${ecosystem?.name}** app supports **${ecosystem.appSystemSupport}**. \n\nAll videos in this guide have been recorded with version **${ecosystem?.ecosystemVersion}** of the **${ecosystem?.name}** application. Please note that the user interface may look slightly different if you are using another version on your device.`,
+
                             visit_note: `Visit the [${ecosystem?.name}](${
                                 ecosystem?.appManual ?? '#'
                             }) webpage to learn more about the application.`,

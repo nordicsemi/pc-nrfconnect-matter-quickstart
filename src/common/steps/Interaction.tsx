@@ -38,7 +38,6 @@ const InteractionStep = ({
                 subHeading={`Complete the following steps using the ${ecosystem?.name} app:`}
             >
                 <Guide
-                    ecosystem={ecosystem}
                     steps={controllingGuide?.guide || []}
                     mediaSrc={controllingGuide?.video || ''}
                 />

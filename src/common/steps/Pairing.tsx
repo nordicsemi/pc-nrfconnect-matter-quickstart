@@ -77,7 +77,6 @@ const PairingStep = () => {
                 subHeading={`Complete the following steps to pair your device with ${ecosystem.name}:`}
             >
                 <Guide
-                    ecosystem={ecosystem}
                     qrcode={qrCodePath}
                     qrcodeStep={pairingGuide?.qrcodeStep}
                     manualCode={manualCode}
