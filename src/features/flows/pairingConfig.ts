@@ -66,15 +66,15 @@ const amazonAlexaGuideStartBase = [
     'Tap **Device** on the list.',
     'Tap the tile with the Matter logo.',
     'Confirm that the device have a Matter logo by tapping **YES**.',
-    'Choose one of the available options:\n\n- Tap **Try Numeric Code Instead** and enter the setup code.\n\n- Tap **Scan QR Code** and scan the QR code from this page.',
+    'Choose one of the available options:\n\n\n* Tap **Try Numeric Code Instead** and enter the setup code.\n\n* Tap **Scan QR Code** and scan the QR code from this page.',
     'Tap **Connect** to start the pairing process.',
     'Wait for the device to be added.',
     'Once device is connected, tap **Next**.',
 ];
 
 const amazonAlexaGuideEndBase = [
-    'Choose one of the available options:\n\n- Create a unique name for the device and tap **Update name**.\n\n- Skip this step by tapping **Skip**.',
-    'Choose one of the available options:\n\n- Add the device to a group and tap **Add To Group**.\n\n- Skip this step by tapping **Skip**.',
+    'Choose one of the available options:\n\n\n* Create a unique name for the device and tap **Update name**.\n\n* Skip this step by tapping **Skip**.',
+    'Choose one of the available options:\n\n\n* Add the device to a group and tap **Add To Group**.\n\n* Skip this step by tapping **Skip**.',
     'Tap **Continue**.',
     'Tap **Done**.\nThe device is visible in your selected room.',
 ];
@@ -84,7 +84,7 @@ const googleHomeGuideStartBase = [
     'Go to the **Devices** page.',
     'Tap **+ Add**.',
     'Tap **Matter-enabled device**.',
-    'Choose one of the available options:\n\n- Tap **Scan the QR code** and scan the QR code from this page.\n\n- Tap **Set up without QR code** and enter the setup code.',
+    'Choose one of the available options:\n\n\n* Tap **Scan the QR code** and scan the QR code from this page.\n\n* Tap **Set up without QR code** and enter the setup code.',
     "Read **Google's Privacy Policy** and tap **Agree** to continue.",
     "Tap **I'm ready** to start the pairing process.",
     'Wait for the device to be added.',
@@ -140,7 +140,7 @@ export const pairingConfig: PairingConfig[] = [
                     ...googleHomeGuideStartBase,
                     'Select a location for the device, set the name, and tap **Next**.',
                     'Create a unique name for the device and tap **Next**.',
-                    'Choose one of the available options:\n\n- Set a new passcode and tap **Continue**.\n\n- Skip this step by tapping **Skip**.',
+                    'Choose one of the available options:\n\n\n* Set a new passcode and tap **Continue**.\n\n* Skip this step by tapping **Skip**.',
                     'Tap **Done**.\nThe device is visible in the selected room.',
                     ...googleHomeGuideEndBase,
                 ],
