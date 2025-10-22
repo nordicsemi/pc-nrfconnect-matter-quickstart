@@ -82,7 +82,7 @@ export default () => {
 
     return (
         <Main>
-            <Main.Content heading="Choose your development environment">
+            <Main.Content heading="Select your development environment">
                 <RadioSelect items={items} onSelect={setSelected} />
             </Main.Content>
             <Main.Footer>

@@ -18,7 +18,7 @@ const EcosystemRequirementsStep = () => {
     return (
         <Main>
             <Main.Content
-                heading={`Set up requirements for ${ecosystem?.name}`}
+                heading={`Gather requirements for ${ecosystem?.name}`}
                 subHeading="Prepare the following devices and tools to set up this ecosystem:"
             >
                 <Requirement

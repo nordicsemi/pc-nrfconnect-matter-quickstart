@@ -13,7 +13,7 @@ import { Resource, ResourceProps } from '../Resource';
 
 const LearnStep = ({ resources }: { resources: ResourceProps[] }) => (
     <Main>
-        <Main.Content heading="Recommended learning resources">
+        <Main.Content heading="Learn about Matter and the nRF Connect SDK">
             <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-0.5">
                 {resources.map(props => (
                     <Resource {...props} key={props.label} />
