@@ -27,7 +27,7 @@ export const commonLearningResources: ResourceProps[] = [
         },
     },
     {
-        label: 'Matter Specification',
+        label: 'Matter specification',
         description: 'Matter is a standard for smart home devices.',
         link: {
             label: 'Matter',
@@ -35,18 +35,18 @@ export const commonLearningResources: ResourceProps[] = [
         },
     },
     {
-        label: 'Matter Repository',
-        description: 'Connected Home Over IP (Matter) main repository',
+        label: 'Matter repository',
+        description: 'Main respository of the open-source Matter project (formerly known as Connected Home Over IP, CHIP)',
         link: {
             label: 'Matter Repository',
             href: 'https://github.com/project-chip/connectedhomeip',
         },
     },
     {
-        label: 'Matter protocol in nRF Connect SDK',
-        description: 'Matter protocol in nRF Connect SDK',
+        label: 'Matter protocol in the nRF Connect SDK',
+        description: 'Matter protocol section in the nRF Connect SDK documentation',
         link: {
-            label: 'Matter protocol in nRF Connect SDK',
+            label: 'Matter protocol in the nRF Connect SDK',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/index.html',
         },
     },
@@ -67,11 +67,11 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
     },
     {
-        label: 'Matter OTA provider App',
+        label: 'Matter OTA provider app',
         description:
             'A command-line application for providing Matter Over-the-Air (OTA) firmware updates. Use this tool to serve firmware images and manage OTA update processes for Matter devices. This tool is available only for Linux systems.',
         downloadLink: {
-            label: 'Matter OTA provider App',
+            label: 'Matter OTA provider app',
             href: `https://github.com/nrfconnect/sdk-connectedhomeip/releases/download/v${pkg.ncs_revision}/chip-ota-provider-app_x64`,
         },
         guideLink: {
@@ -80,7 +80,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
     },
     {
-        label: 'CHIP Cert application',
+        label: 'CHIP certification application',
         description:
             'A utility for generating, managing, and verifying Matter certificates. Essential for setting up device attestation and secure communication in Matter networks. This tool is available only for Linux systems.',
         downloadLink: {
@@ -93,15 +93,15 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
     },
     {
-        label: 'ZapTool',
+        label: 'ZAP tool',
         description:
             'A graphical tool for creating, editing, and managing Matter data models and clusters. Use ZapTool to define device capabilities and generate configuration files for your Matter applications.',
         downloadLink: {
-            label: 'ZapTool',
+            label: 'ZAP tool',
             href: `https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/tools.html#installing_the_zap_tool`,
         },
         guideLink: {
-            label: 'ZapTool user guide',
+            label: 'ZAP tool user guide',
             href: 'https://docs.silabs.com/zap-tool/1.0.0/zap-users-guide/',
         },
         buttonLabel: 'See download instructions',
@@ -111,7 +111,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         description:
             'An online tool for profiling the power consumption of Matter devices operating over Thread. Use this tool to estimate and analyze the energy usage of your device under various scenarios, helping you optimize battery life and performance during development.',
         downloadLink: {
-            label: 'Matter Online Profiler',
+            label: 'Online Power Profiler for Matter over Thread',
             href: `https://devzone.nordicsemi.com/power/w/opp/16/online-power-profiler-for-matter-over-thread`,
         },
         guideLink: {
@@ -121,11 +121,11 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         buttonLabel: 'Open the tool in your browser',
     },
     {
-        label: 'Matter Cluster Editor Desktop App',
+        label: 'Matter Cluster Editor app',
         description:
             'A desktop application for editing Matter clusters and attributes. Use this tool to create, modify, and validate Matter device configurations. This tool is installed via nRF Connect for Desktop launcher. You can install it in the next steps.',
         guideLink: {
-            label: 'Matter Cluster Editor app overview and guide',
+            label: 'Matter Cluster Editor app documentation',
             href: 'https://docs.nordicsemi.com/bundle/nrf-connect-matter-cluster-editor/page/index.html',
         },
     },

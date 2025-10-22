@@ -29,7 +29,7 @@ const NoteGuide = ({ ecosystem }: { ecosystem: EcosystemConfig }) => (
 
 const NoteVideo = ({ ecosystem }: { ecosystem: EcosystemConfig }) => (
     <ReactMarkdown>
-        {`The video has been recorded with version **${ecosystem?.ecosystemVersion}** of the **${ecosystem?.name}** application. Please note that the user interface may look slightly different if you are using another version on your device.`}
+        {`The video has been recorded with version **${ecosystem?.ecosystemVersion}** of the **${ecosystem?.name}** application. The user interface may look slightly different if you are using another version.`}
     </ReactMarkdown>
 );
 
