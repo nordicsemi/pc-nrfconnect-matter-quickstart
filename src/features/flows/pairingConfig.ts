@@ -93,9 +93,7 @@ const googleHomeGuideStartBase = [
     'Once device is connected, tap **Done**.',
 ];
 
-const googleHomeGuideEndBase = [
-    'The device is visible in the selected room.',
-];
+const googleHomeGuideEndBase = ['The device is visible in the selected room.'];
 
 export const pairingConfig: PairingConfig[] = [
     {

@@ -36,7 +36,8 @@ export const commonLearningResources: ResourceProps[] = [
     },
     {
         label: 'Matter repository',
-        description: 'Main respository of the open-source Matter project (formerly known as Connected Home Over IP, CHIP)',
+        description:
+            'Main respository of the open-source Matter project (formerly known as Connected Home Over IP, CHIP)',
         link: {
             label: 'Matter Repository',
             href: 'https://github.com/project-chip/connectedhomeip',
@@ -44,7 +45,8 @@ export const commonLearningResources: ResourceProps[] = [
     },
     {
         label: 'Matter protocol in the nRF Connect SDK',
-        description: 'Matter protocol section in the nRF Connect SDK documentation',
+        description:
+            'Matter protocol section in the nRF Connect SDK documentation',
         link: {
             label: 'Matter protocol in the nRF Connect SDK',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/index.html',

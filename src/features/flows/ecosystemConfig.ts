@@ -136,7 +136,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
             'Tap the **Google Nest or partner device** option.',
             'Select **Home** that you want to add the device to.',
             'When prompted, set up voice ID or tap **Remind me later**.',
-            'Tap **Let\'s go**.\nThe device is added to the Alexa app and is visible in the selected room.',
+            "Tap **Let's go**.\nThe device is added to the Alexa app and is visible in the selected room.",
         ],
         supportedDeviceTypes: [
             'Matter Door Lock',
