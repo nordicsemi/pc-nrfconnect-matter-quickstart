@@ -34,8 +34,8 @@ describe('SetupPayload', () => {
         });
     });
 
-    describe('Manual Code Generation and Parsing', () => {
-        it('should generate and parse manual codes correctly', () => {
+    describe('Manual pairing code generation and parsing', () => {
+        it('should generate and parse manual pairing codes correctly', () => {
             const payload = new SetupPayload(
                 3840,
                 20202021,
@@ -53,7 +53,7 @@ describe('SetupPayload', () => {
             expect(parsedPayload?.pincode).toBe(20202021);
         });
 
-        it('should match expected manual code for passcode 20202021 and short discriminator 15', () => {
+        it('should match expected manual pairing code for passcode 20202021 and short discriminator 15', () => {
             const payload = new SetupPayload(
                 3840, // 15 * 256, long discriminator that yields short discriminator 15
                 20202021,
@@ -70,7 +70,7 @@ describe('SetupPayload', () => {
             expect(parsed?.pincode).toBe(20202021);
         });
 
-        it('should match expected manual code for passcode 65286841 and short discriminator 6', () => {
+        it('should match expected manual pairing code for passcode 65286841 and short discriminator 6', () => {
             const payload = new SetupPayload(
                 1536, // 6 * 256, long discriminator that yields short discriminator 6
                 65286841,

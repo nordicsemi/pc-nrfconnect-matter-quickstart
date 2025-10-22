@@ -4,4 +4,4 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-export const selectFirmwareWithoutProgrammingOption = true;
+export const selectFirmwareWithoutProgrammingOption = false;

@@ -85,7 +85,7 @@ const Guide = ({
                                     {manualCode && (
                                         <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-1">
                                             <div className="tw-font-bold tw-text-primary">
-                                                Manual Code
+                                                Manual pairing code
                                             </div>
                                             <div className="tw-font-light">
                                                 {manualCode}

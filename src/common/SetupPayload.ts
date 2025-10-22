@@ -10,7 +10,7 @@
  * Matter Setup Payload Parser and Generator
  *
  * This module provides functionality to parse and generate Matter setup
- * payloads for both QR codes and manual setup codes.
+ * payloads for both QR codes and manual pairing codes.
  *
  * @example Parse a QR code
  * ```typescript
@@ -170,8 +170,8 @@ export class SetupPayload {
     }
 
     /**
-     * Generate manual setup code
-     * @returns {string} Manual setup code string with Verhoeff check digit
+     * Generate manual pairing code
+     * @returns {string} Manual pairing code string with Verhoeff check digit
      */
     generateManualCode(): string {
         const vidPidPresent = this.flow !== CommissioningFlow.Standard ? 1 : 0;
@@ -269,8 +269,8 @@ export class SetupPayload {
     }
 
     /**
-     * Parse manual setup code
-     * @param {string} payload - Manual setup code string
+     * Parse manual pairing code
+     * @param {string} payload - Manual pairing code string
      * @returns {SetupPayload|null} Parsed SetupPayload instance or null if invalid
      */
     static parseManualCode(payload: string): SetupPayload | null {
@@ -337,7 +337,7 @@ export class SetupPayload {
     }
 
     /**
-     * Parse either QR code or manual code
+     * Parse either QR code or manual pairing code
      * @param {string} payload - Payload string to parse
      * @returns {SetupPayload|null} Parsed SetupPayload instance or null if invalid
      */
