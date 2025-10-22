@@ -26,7 +26,7 @@ let selectedEcosystem: EcosystemConfig;
 export const ecosystemConfig: EcosystemConfig[] = [
     {
         name: 'Apple Home',
-        description: 'Work with Apple Home',
+        description: 'Apple Home',
         appManual: 'https://www.apple.com/home-app/',
         pairingManual: 'https://support.apple.com/en-us/104998',
         hubManual: 'https://support.apple.com/en-us/102557',
@@ -57,7 +57,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
     },
     {
         name: 'Google Home',
-        description: 'Work with Google Home',
+        description: 'Google Home',
         appManual: 'https://home.google.com/welcome/',
         pairingManual:
             'https://support.google.com/googlenest/answer/9159862?hl=en',
@@ -100,7 +100,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
     },
     {
         name: 'Amazon Alexa',
-        description: 'Work with Amazon Alexa',
+        description: 'Amazon Alexa',
         appManual:
             'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
         pairingManual:
@@ -149,7 +149,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
     },
     {
         name: 'SmartThings',
-        description: 'Work with SmartThings',
+        description: 'SmartThings (Samsung)',
         appManual: 'https://www.samsung.com/uk/smartthings/app/',
         pairingManual:
             'https://support.smartthings.com/hc/en-us/articles/360052390111-Devices-in-SmartThings',

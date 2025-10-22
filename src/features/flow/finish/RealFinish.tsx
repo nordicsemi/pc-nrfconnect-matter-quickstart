@@ -27,7 +27,7 @@ export default ({ back }: { back: () => void }) => {
         <Main>
             <Main.Content
                 heading="Thank you"
-                subHeading={`You completed all steps for the ${deviceName}`}
+                subHeading={`You completed all steps for the ${deviceName}.`}
             >
                 <div className="tw-flex tw-flex-col">
                     <span className="mdi mdi-hand-wave tw-text-6xl/[3.75rem] tw-text-gray-700" />

@@ -39,7 +39,7 @@ export default () => {
                 <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-text-sm">
                     <div className="tw-w-32 tw-flex-shrink-0 tw-pr-10">
                         <div className="tw-flex tw-flex-col tw-items-center tw-gap-4">
-                            <b>VS Code IDE</b>
+                            <b>VS Code IDE (recommended)</b>
                             <img
                                 src={
                                     selected?.id === 'vscode'
@@ -82,7 +82,7 @@ export default () => {
 
     return (
         <Main>
-            <Main.Content heading="How would you like to start developing">
+            <Main.Content heading="Choose your development environment">
                 <RadioSelect items={items} onSelect={setSelected} />
             </Main.Content>
             <Main.Footer>

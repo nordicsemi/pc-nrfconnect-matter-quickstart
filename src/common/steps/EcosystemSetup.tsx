@@ -18,8 +18,8 @@ const EcosystemSetupStep = () => {
     return (
         <Main>
             <Main.Content
-                heading={`Complete the requirements for the ${ecosystem?.name}`}
-                subHeading={`Follow the instructions below to setup ${ecosystem?.hubName} for the ${ecosystem?.name} ecosystem:`}
+                heading={`Set up requirements for ${ecosystem?.name}`}
+                subHeading={`Complete the following steps to set up ${ecosystem?.hubName} for ${ecosystem?.name}:`}
             >
                 <Guide
                     ecosystem={ecosystem}

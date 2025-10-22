@@ -108,7 +108,7 @@ const AppsStep = ({ apps }: { apps: string[] }) => {
     return (
         <Main>
             <Main.Content
-                heading="Select apps to install"
+                heading="Install additional applications"
                 subHeading={`Check out these nRF Connect for Desktop applications for ${
                     deviceInfo(device).name
                 }:`}

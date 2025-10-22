@@ -28,7 +28,7 @@ export default ({ next }: { next: () => void }) => {
         <Main>
             <Main.Content
                 heading="Finish"
-                subHeading={`You completed all steps for the ${deviceName}`}
+                subHeading={`You completed all steps for the ${deviceName}.`}
             >
                 <div className="tw-flex tw-flex-col">
                     <span className="mdi mdi-flag-checkered tw-text-8xl/[6rem] tw-text-gray-700" />

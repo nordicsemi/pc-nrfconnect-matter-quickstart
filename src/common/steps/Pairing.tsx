@@ -73,8 +73,8 @@ const PairingStep = () => {
     return (
         <Main>
             <Main.Content
-                heading={`Pair your ${previouslySelectedChoice.name} device with the ${ecosystem.name}`}
-                subHeading={`Follow the instructions below to pair your ${previouslySelectedChoice.name} device with the ${ecosystem.name}:`}
+                heading={`Pair your ${previouslySelectedChoice.name} device`}
+                subHeading={`Complete the following steps to pair your device with ${ecosystem.name}:`}
             >
                 <Guide
                     ecosystem={ecosystem}

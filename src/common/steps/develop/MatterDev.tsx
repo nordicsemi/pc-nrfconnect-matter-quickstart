@@ -25,8 +25,8 @@ export default ({
     return (
         <Main>
             <Main.Content
-                heading="Prepare for developing Matter applications"
-                subHeading="Kickstart your Matter application development with these tools and resources designed to streamline your workflow and unlock the full potential of your device."
+                heading="ExploreMatter development resources"
+                subHeading="Kickstart your Matter application development with the following tools and resources, designed to streamline your workflow and unlock the full potential of your device."
             >
                 <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-0.5">
                     {resources.map(props => (

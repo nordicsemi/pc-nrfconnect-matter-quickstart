@@ -45,7 +45,7 @@ const VerifyBootloaderStep = () => {
     return (
         <Main>
             <Main.Content
-                heading="Entering bootloader mode"
+                heading="Enter bootloader mode"
                 subHeading="Make sure that the device is in bootloader mode, which is required to program it using Device Firmware Upgrade."
             >
                 <div className="tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-8">

@@ -39,8 +39,8 @@ const EnableAdvertisingStep = (advertisingData: AdvertisingData) => {
             {pairingConfig?.autoAdvertise ? null : (
                 <>
                     <Main.Content
-                        heading="Enable Bluetooth Low Energy advertising"
-                        subHeading="Follow the instructions below to enable Bluetooth Low Energy advertising:"
+                        heading="Advertise over Bluetooth Low Energy"
+                        subHeading="Complete the following steps to enable Bluetooth Low Energy advertising:"
                     >
                         <div>
                             {(() => {

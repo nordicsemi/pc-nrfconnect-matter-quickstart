@@ -18,8 +18,8 @@ const EcosystemRequirementsStep = () => {
     return (
         <Main>
             <Main.Content
-                heading={`Complete the requirements for the ${ecosystem?.name}`}
-                subHeading="You need the following devices and tools to set up this ecosystem:"
+                heading={`Set up requirements for ${ecosystem?.name}`}
+                subHeading="Prepare the following devices and tools to set up this ecosystem:"
             >
                 <Requirement
                     content={[
@@ -35,7 +35,7 @@ const EcosystemRequirementsStep = () => {
                         {
                             path: ecosystem?.appImage,
                             alt: ecosystem.appImageAlt,
-                            text: `Smartphone with **${ecosystem?.name}** Application installed`,
+                            text: `Smartphone with the **${ecosystem?.name}** app installed`,
                             description: `The **${ecosystem?.name}** app supports **${ecosystem.appSystemSupport}**.`,
                             visit_note: `Visit the [${ecosystem?.name}](${
                                 ecosystem?.appManual ?? '#'
