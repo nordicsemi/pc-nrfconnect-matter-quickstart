@@ -19,7 +19,7 @@ export default () => {
 
     return (
         <Main>
-            <Main.Content heading="Set up nRF Connect SDK for command line">
+            <Main.Content heading="Set up the nRF Connect SDK for command line">
                 <div className="tw-flex tw-flex-col tw-gap-6">
                     {cliCommonConfig.map(resource => (
                         <Resource

@@ -51,8 +51,7 @@ const smartThingsGuideStartBase = [
     'Tap **Add** in the **Partner devices** section.',
     'Tap **Matter**.',
     'Tap **Scan QR code**.',
-    'Scan the QR code and wait for the device to be added.',
-    '.\nAt the end of the process, a prompt about the device not being certified appears.',
+    'Scan the QR code and wait for the device to be added.\nAt the end of the process, a prompt about the device not being certified appears.',
     'Tap **Continue** and wait for the device to be added.',
     'Select a location for the device, set the name, and tap **Done**.',
 ];
