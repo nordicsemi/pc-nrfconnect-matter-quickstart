@@ -42,12 +42,24 @@ const useLogSteps = () => {
 const Flow = ({ flow }: { flow: Flow[] }) => {
     const dispatch = useAppDispatch();
     const currentStepIndex = useAppSelector(getCurrentStepIndex);
+    const currentFlow = useAppSelector(getFlow);
     const flowWithFinish = useMemo(() => [...flow, Finish()], [flow]);
+    const flowNames = useMemo(
+        () => flowWithFinish.map(f => f.name),
+        [flowWithFinish]
+    );
 
     useEffect(() => {
-        dispatch(allReset());
-        dispatch(setFlow(flowWithFinish.map(f => f.name)));
-    }, [flowWithFinish, dispatch]);
+        // Only reset if the flow actually changed (not just reference)
+        const flowChanged =
+            currentFlow.length !== flowNames.length ||
+            currentFlow.some((name, index) => name !== flowNames[index]);
+
+        if (flowChanged) {
+            dispatch(allReset());
+            dispatch(setFlow(flowNames));
+        }
+    }, [flowNames, currentFlow, dispatch]);
 
     const Step =
         currentStepIndex >= 0

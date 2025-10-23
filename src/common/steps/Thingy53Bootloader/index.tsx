@@ -4,23 +4,19 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { getSelectedDeviceUnsafely } from '../../../features/device/deviceSlice';
-import {
-    goToNextStep,
-    goToPreviousStep,
-} from '../../../features/flow/flowSlice';
+import { goToNextStep } from '../../../features/flow/flowSlice';
 import { Back } from '../../Back';
 import Guide from '../../Guide';
 import Main from '../../Main';
 
-let previous = false;
-
 const VerifyBootloaderStep = () => {
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const dispatch = useAppDispatch();
+    const hasNavigatedRef = useRef(false);
     const guideManual = [
         "Remove the top part of the Thingy:53's cover.",
         'Power off the device using **SW1** switch.',
@@ -31,16 +27,13 @@ const VerifyBootloaderStep = () => {
     ];
 
     useEffect(() => {
-        if (device.traits.mcuBoot === true) {
-            if (previous) {
-                dispatch(goToPreviousStep());
-                previous = false;
-            } else {
-                dispatch(goToNextStep());
-                previous = true;
-            }
+        if (device.traits.mcuBoot === true && !hasNavigatedRef.current) {
+            hasNavigatedRef.current = true;
+            dispatch(goToNextStep());
+        } else if (device.traits.mcuBoot === false && hasNavigatedRef.current) {
+            hasNavigatedRef.current = false;
         }
-    }, [device, dispatch]);
+    }, [device.traits.mcuBoot, dispatch]);
 
     return (
         <Main>

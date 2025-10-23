@@ -44,7 +44,16 @@ const useDevicesInStore = () => {
 
                 // Handle added/updated devices
                 formattedThingyDevices.forEach(formattedDevice => {
-                    if (!currentThingyDevices.has(formattedDevice.id)) {
+                    const existingDevice = currentThingyDevices.get(
+                        formattedDevice.id
+                    );
+                    // Only dispatch if device is new OR if mcuBoot trait has changed
+                    const shouldUpdate =
+                        !existingDevice ||
+                        existingDevice.traits?.mcuBoot !==
+                            formattedDevice.traits?.mcuBoot;
+
+                    if (shouldUpdate) {
                         dispatch(addDevice(formattedDevice));
                     }
                     currentThingyDevices.set(
