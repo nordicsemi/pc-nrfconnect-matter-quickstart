@@ -42,7 +42,10 @@ const SelectEcosystemStep = () => {
 
     return (
         <Main>
-            <Main.Content heading="Select the ecosystem" subHeading="Select the ecosystem you want to work with:">
+            <Main.Content
+                heading="Select the ecosystem"
+                subHeading="Select the ecosystem you want to work with:"
+            >
                 <RadioSelect
                     items={filteredEcosystems.map(ecosystem => ({
                         id: ecosystem.name,

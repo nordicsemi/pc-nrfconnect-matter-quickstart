@@ -72,8 +72,8 @@ export default ({ samples }: { samples: SampleWithRef[] }) => {
                     <p>
                         Click <b>Open VS Code with extension</b> to open VS Code
                         and install the nRF Connect for VS Code extension.
-                        Follow the instructions in the extension to install
-                        the toolchain and the SDK, and start developing.
+                        Follow the instructions in the extension to install the
+                        toolchain and the SDK, and start developing.
                     </p>
                 </div>
             </Main.Content>
