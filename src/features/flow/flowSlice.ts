@@ -27,8 +27,20 @@ const slice = createSlice({
     initialState,
     reducers: {
         setFlow: (state, action: PayloadAction<string[]>) => {
+            // Only reset to step 0 if the flow is genuinely different or empty
+            const flowChanged =
+                state.flow.length === 0 ||
+                state.flow.length !== action.payload.length ||
+                state.flow.some(
+                    (name, index) => name !== action.payload[index]
+                );
+
             state.flow = action.payload;
-            state.currentStepIndex = 0;
+
+            if (flowChanged) {
+                state.currentStepIndex = 0;
+            }
+            // Otherwise preserve the current step index
         },
         goToNextStep: state => {
             state.currentStepIndex = Math.min(

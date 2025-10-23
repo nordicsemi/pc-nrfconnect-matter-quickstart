@@ -8,6 +8,8 @@ import React from 'react';
 
 import Link from './Link';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 const overWriteA = ({
     href,
     children,
@@ -28,7 +30,20 @@ const overwriteInfoImg = ({ src, alt }: { src?: string; alt?: string }) => (
     />
 );
 
-const TdComponent = (props: React.TdHTMLAttributes<HTMLTableCellElement>) => {
+const TdComponent = ({
+    isHeader,
+    node,
+    sourcePosition,
+    index,
+    siblingCount,
+    ...props
+}: React.TdHTMLAttributes<HTMLTableCellElement> & {
+    isHeader?: boolean;
+    node?: unknown;
+    sourcePosition?: unknown;
+    index?: number;
+    siblingCount?: number;
+}) => {
     const ref = React.useCallback((element: HTMLTableCellElement | null) => {
         if (element) {
             const parent = element.parentElement;
@@ -50,22 +65,75 @@ const TdComponent = (props: React.TdHTMLAttributes<HTMLTableCellElement>) => {
 };
 
 const tableComponents = {
-    table: ({ ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
+    table: ({
+        node,
+        sourcePosition,
+        index,
+        siblingCount,
+        ...props
+    }: React.TableHTMLAttributes<HTMLTableElement> & {
+        node?: unknown;
+        sourcePosition?: unknown;
+        index?: number;
+        siblingCount?: number;
+    }) => (
         <table
             className="tw-w-full tw-border-collapse tw-border tw-text-sm"
             {...props}
         />
     ),
-    thead: ({ ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-        <thead {...props} />
-    ),
-    tbody: ({ ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-        <tbody {...props} />
-    ),
-    tr: ({ ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-        <tr {...props} />
-    ),
-    th: ({ ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) => (
+    thead: ({
+        node,
+        sourcePosition,
+        index,
+        siblingCount,
+        ...props
+    }: React.HTMLAttributes<HTMLTableSectionElement> & {
+        node?: unknown;
+        sourcePosition?: unknown;
+        index?: number;
+        siblingCount?: number;
+    }) => <thead {...props} />,
+    tbody: ({
+        node,
+        sourcePosition,
+        index,
+        siblingCount,
+        ...props
+    }: React.HTMLAttributes<HTMLTableSectionElement> & {
+        node?: unknown;
+        sourcePosition?: unknown;
+        index?: number;
+        siblingCount?: number;
+    }) => <tbody {...props} />,
+    tr: ({
+        node,
+        sourcePosition,
+        index,
+        siblingCount,
+        isHeader,
+        ...props
+    }: React.HTMLAttributes<HTMLTableRowElement> & {
+        node?: unknown;
+        sourcePosition?: unknown;
+        index?: number;
+        siblingCount?: number;
+        isHeader?: boolean;
+    }) => <tr {...props} />,
+    th: ({
+        isHeader,
+        node,
+        sourcePosition,
+        index,
+        siblingCount,
+        ...props
+    }: React.ThHTMLAttributes<HTMLTableCellElement> & {
+        isHeader?: boolean;
+        node?: unknown;
+        sourcePosition?: unknown;
+        index?: number;
+        siblingCount?: number;
+    }) => (
         <th
             className="tw-border tw-px-2 tw-py-1 tw-text-left tw-font-bold"
             {...props}
