@@ -86,7 +86,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
             'Decide if you want to help improve Nest Hub by sharing statistics or not.',
             'When asked about your country compatibility, tap **Proceed**.',
             'Select **Room** that you want to add the device to.',
-            'Choose the Wi-Fi network that you want to use for the device. Make sure it is the same network as the one you are currently using on your smartphone.',
+            'Choose the Wi-Fi network that you want to use for the device.\n&nbsp;  \nMake sure it is the same network as the one you are currently using on your smartphone.',
             'Click **Next** on the next few screens that instruct you how to use the device.\n&nbsp;  \nThe device is added to the Google Home app and is visible in the selected room.',
         ],
         supportedDeviceTypes: [

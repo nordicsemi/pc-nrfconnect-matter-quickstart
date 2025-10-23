@@ -122,15 +122,6 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
         buttonLabel: 'Open the tool in your browser',
     },
-    {
-        label: 'Matter Cluster Editor app',
-        description:
-            'A desktop application for editing Matter clusters and attributes. Use this tool to create, modify, and validate Matter device configurations. This tool is installed via nRF Connect for Desktop launcher. You can install it in the next steps.',
-        guideLink: {
-            label: 'Matter Cluster Editor app documentation',
-            href: 'https://docs.nordicsemi.com/bundle/nrf-connect-matter-cluster-editor/page/index.html',
-        },
-    },
 ];
 
 export const sampleCommonConfig = [
