@@ -41,7 +41,7 @@ const appleHomeGuideStartBase = [
 ];
 
 const appleHomeGuideEndBase = [
-    'Tap **Done**.\nThe device will be visible in your selected room.',
+    'Tap **Done**.\n&nbsp;  \nThe device will be visible in your selected room.',
 ];
 
 const smartThingsGuideStartBase = [
@@ -51,13 +51,13 @@ const smartThingsGuideStartBase = [
     'Tap **Add** in the **Partner devices** section.',
     'Tap **Matter**.',
     'Tap **Scan QR code**.',
-    'Scan the QR code and wait for the device to be added.\nAt the end of the process, a prompt about the device not being certified appears.',
+    'Scan the QR code and wait for the device to be added.\n&nbsp;  \nAt the end of the process, a prompt about the device not being certified appears.',
     'Tap **Continue** and wait for the device to be added.',
     'Select a location for the device, set the name, and tap **Done**.',
 ];
 
 const smartThingsGuideEndBase = [
-    'Wait for plugins to be installed.\nWhen the installation is done, the device is visible in the selected room.',
+    'Wait for plugins to be installed.\n&nbsp;  \nWhen the installation is done, the device is visible in the selected room.',
 ];
 
 const amazonAlexaGuideStartBase = [
@@ -66,17 +66,17 @@ const amazonAlexaGuideStartBase = [
     'Tap **Device** on the list.',
     'Tap the tile with the Matter logo.',
     'Confirm that the device have a Matter logo by tapping **YES**.',
-    'Tap **Scan QR Code** and scan the QR code shown below.\nYou can also tap **Try Numeric Code Instead?** and enter the manual pairing code.',
+    'Tap **Scan QR Code** and scan the QR code shown below.\n&nbsp;  \nYou can also tap **Try Numeric Code Instead?** and enter the manual pairing code.',
     'Tap **Connect** to start the pairing process.',
     'Wait for the device to be added.',
     'Once device is connected, tap **Next**.',
 ];
 
 const amazonAlexaGuideEndBase = [
-    'Create a unique name for the device and tap **Update name**.\nYou can also skip this step by tapping **Skip**.',
-    'Add the device to a group and tap **Add To Group**.\nYou can also skip this step by tapping **Skip**.',
+    'Create a unique name for the device and tap **Update name**.\n&nbsp;  \nYou can also skip this step by tapping **Skip**.',
+    'Add the device to a group and tap **Add To Group**.\n&nbsp;  \nYou can also skip this step by tapping **Skip**.',
     'Tap **Continue**.',
-    'Tap **Done**.\nThe device is visible in your selected room.',
+    'Tap **Done**.\n&nbsp;  \nThe device is visible in your selected room.',
 ];
 
 const googleHomeGuideStartBase = [
@@ -84,7 +84,7 @@ const googleHomeGuideStartBase = [
     'Go to the **Devices** page.',
     'Tap **+ Add**.',
     'Tap **Matter-enabled device**.',
-    'Tap **Scan the QR code** and scan the QR code shown below.\nYou can also tap **Set up without QR code** and enter the manual pairing code.',
+    'Tap **Scan the QR code** and scan the QR code shown below.\n&nbsp;  \nYou can also tap **Set up without QR code** and enter the manual pairing code.',
     "Read **Google's Privacy Policy** and tap **Agree** to continue.",
     "Tap **I'm ready** to start the pairing process.",
     'Wait for the device to be added.',
@@ -140,8 +140,8 @@ export const pairingConfig: PairingConfig[] = [
                     ...googleHomeGuideStartBase,
                     'Select a location for the device, set the name, and tap **Next**.',
                     'Create a unique name for the device and tap **Next**.',
-                    'Set a new passcode and tap **Continue**.\nYou can also skip this step by tapping **Skip**.',
-                    'Tap **Done**.\nThe device is visible in the selected room.',
+                    'Set a new passcode and tap **Continue**.\n&nbsp;  \nYou can also skip this step by tapping **Skip**.',
+                    'Tap **Done**.\n&nbsp;  \nThe device is visible in the selected room.',
                     ...googleHomeGuideEndBase,
                 ],
                 video: '../resources/ecosystems/Google/adding_device/google_lock.mp4',
