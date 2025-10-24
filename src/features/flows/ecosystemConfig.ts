@@ -53,7 +53,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
             'Matter Weather Station',
             'Matter Contact Sensor',
         ],
-        ecosystemVersion: '18.6',
+        ecosystemVersion: '26.0.1',
     },
     {
         name: 'Google Home',
