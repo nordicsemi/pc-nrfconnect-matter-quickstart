@@ -92,7 +92,7 @@ const googleHomeGuideStartBase = [
     'Once device is connected, tap **Done**.',
 ];
 
-const googleHomeGuideEndBase = [''];
+const googleHomeGuideEndBase = String([]);
 
 export const pairingConfig: PairingConfig[] = [
     {

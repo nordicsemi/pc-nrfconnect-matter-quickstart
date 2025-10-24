@@ -149,7 +149,7 @@ export const ecosystemConfig: EcosystemConfig[] = [
     },
     {
         name: 'SmartThings',
-        description: 'SmartThings (Samsung)',
+        description: 'Samsung SmartThings',
         appManual: 'https://www.samsung.com/uk/smartthings/app/',
         pairingManual:
             'https://support.smartthings.com/hc/en-us/articles/360052390111-Devices-in-SmartThings',
