@@ -20,7 +20,9 @@ application.
 ## Documentation
 
 The Matter Quick Start app is meant as an onboarding tool and it does not come
-with its own documentation. The onboarding steps will be different for each of the [supported devices and ecosystems](https://docs.nordicsemi.com/bundle/nrf-connect-matter-quickstart/page/index.html#supported-devices).
+with its own documentation. The onboarding steps will be different for each of
+the
+[supported devices and ecosystems](https://docs.nordicsemi.com/bundle/nrf-connect-matter-quickstart/page/index.html#supported-devices).
 
 ## Development
 
