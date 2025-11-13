@@ -55,9 +55,6 @@
         "prepare": "husky install",
         "regenerate": "./scripts/regenerate_hexs.sh"
     },
-    "eslintConfig": {
-        "extends": "./node_modules/@nordicsemiconductor/pc-nrfconnect-shared/config/eslintrc"
-    },
     "prettier": "@nordicsemiconductor/pc-nrfconnect-shared/config/prettier.config.js",
     "devDependencies": {
         "@nordicsemiconductor/pc-nrfconnect-shared": "^227.0.0",
