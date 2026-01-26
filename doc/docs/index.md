@@ -1,6 +1,6 @@
-# {{app_name}}
+# Matter Quick Start app
 
-The {{app_name}} is a cross-platform tool for guided setup and installation procedures of Matter accessory devices, available as one of the applications in [nRF Connect for Desktop](https://docs.nordicsemi.com/bundle/nrf-connect-desktop/page/index.html).
+The Matter Quick Start app is a cross-platform tool for guided setup and installation procedures of Matter accessory devices, available as one of the applications in [nRF Connect for Desktop](https://docs.nordicsemi.com/bundle/nrf-connect-desktop/page/index.html).
 
 ??? info "What is Matter"
 
@@ -14,7 +14,7 @@ The {{app_name}} is a cross-platform tool for guided setup and installation proc
 
 ## Overview
 
-The {{app_name}} is designed to guide you through the steps required for setting up a Matter accessory device.
+The Matter Quick Start app is designed to guide you through the steps required for setting up a Matter accessory device.
 
 ![Matter samples selection](./screenshots/matter_quickstart_samples_selection_overview.png "Matter samples selection")
 
@@ -28,7 +28,7 @@ The application supports the following features:
 
 ## Installation
 
-You can run the {{app_name}} when you [download and install nRF Connect for Desktop](https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-Desktop/Download).
+You can run the Matter Quick Start app when you [download and install nRF Connect for Desktop](https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-Desktop/Download).
 
 ## Supported devices
 
@@ -40,13 +40,13 @@ After installing and opening the app from nRF Connect for Desktop, connect one o
 | Nordic Thingy:53* | [Matter Weather Station](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/applications/matter_weather_station/README.html) application |
 
 ??? info "* Programming Nordic Thingy:53"
-    Nordic Thingy:53 does not have an on-board J-Link programmer. For this reason, you can only program the device through Device Firmware Upgrade (DFU) over USB. The {{app_name}} provides step-by-step guidance for putting the Thingy:53 into the bootloader mode and verifies that the memory partitions are compatible with the selected firmware before the upload.
+    Nordic Thingy:53 does not have an on-board J-Link programmer. For this reason, you can only program the device through Device Firmware Upgrade (DFU) over USB. The Matter Quick Start app provides step-by-step guidance for putting the Thingy:53 into the bootloader mode and verifies that the memory partitions are compatible with the selected firmware before the upload.
 
     ![Thingy:53 bootloader mode](./screenshots/matter_quickstart_thingy_bootloader.png "Thingy:53 bootloader mode")
 
 ## Supported ecosystems
 
-The {{app_name}} supports the following ecosystems:
+The Matter Quick Start app supports the following ecosystems:
 
 - Apple Home
 - Google Home
@@ -61,7 +61,7 @@ The {{app_name}} supports the following ecosystems:
 
 Each commercial ecosystem requires specific devices, like a smart speaker or hub and a compatible mobile application to enable Matter functionality.
 
-The {{app_name}} informs you about the required devices, as well as the necessary mobile application. The app also presents step-by-step instructions to help you prepare your ecosystem to work with Matter accessories, including videos recorded from the actual mobile applications.
+The Matter Quick Start app informs you about the required devices, as well as the necessary mobile application. The app also presents step-by-step instructions to help you prepare your ecosystem to work with Matter accessories, including videos recorded from the actual mobile applications.
 
 ![Ecosystem setup](./screenshots/matter_quickstart_ecosystem_setup.png "Ecosystem setup")
 
@@ -69,7 +69,7 @@ The {{app_name}} informs you about the required devices, as well as the necessar
 
 Each commercial ecosystem requires specific mobile applications for pairing and controlling the Matter accessory device.
 
-The {{app_name}} informs you about the required mobile applications. Once you have selected and set up your preferred ecosystem, you can proceed to pair your Matter accessory device with the corresponding mobile application. The information provided is tailored for each supported ecosystem and every available Matter sample.
+The Matter Quick Start app informs you about the required mobile applications. Once you have selected and set up your preferred ecosystem, you can proceed to pair your Matter accessory device with the corresponding mobile application. The information provided is tailored for each supported ecosystem and every available Matter sample.
 
 ![Pairing Matter accessory](./screenshots/matter_quickstart_pairing.png "Pairing Matter accessory")
 
@@ -77,7 +77,7 @@ The {{app_name}} informs you about the required mobile applications. Once you ha
 
 Testing the Matter device type is different for each ecosystem.
 
-For each device type, the {{app_name}} provides information about how to interact with the device after pairing. For example, if you are using a Matter Light Bulb, the app will show how to adjust brightness and toggle the light on or off.
+For each device type, the Matter Quick Start app provides information about how to interact with the device after pairing. For example, if you are using a Matter Light Bulb, the app will show how to adjust brightness and toggle the light on or off.
 
 ![Controlling Matter accessory](./screenshots/matter_quickstart_controlling.png "Controlling Matter accessory")
 
