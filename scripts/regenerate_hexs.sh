@@ -13,7 +13,7 @@ usage() {
     echo "  -s, --sample SAMPLE     Build only specific sample (can be used multiple times)"
     echo "                          Options: lock, light_bulb, contact_sensor, temperature_sensor, weather_station"
     echo "  -b, --board BOARD       Build only for specific board (can be used multiple times)"
-    echo "                          Options: nrf52840dk, nrf5340dk, nrf54l15dk, nrf54lm20dk, thingy53"
+    echo "                          Options: nrf52840dk, nrf5340dk, nrf54l15dk, nrf54lm20dk, nrf54l15tag, thingy53"
     echo "  -d, --dry-run           Show what would be built without building"
     echo "  -v, --verbose           Show build output in real-time"
     echo ""
@@ -101,28 +101,33 @@ echo "NRF Base: $NRF_BASE"
 echo "Resources: $RESOURCES_BASE"
 echo ""
 
-# Define sample configurations
-# Format: "sample_name:sample_path_relative_to_nrf:is_application"
-declare -a SAMPLES=(
-    "lock:samples/matter/lock:0"
-    "light_bulb:samples/matter/light_bulb:0"
-    "contact_sensor:samples/matter/contact_sensor:0"
-    "temperature_sensor:samples/matter/temperature_sensor:0"
-    "weather_station:applications/matter_weather_station:1"
-)
-
-# Define board configurations
-# Format: "board_identifier:board_name:firmware_dir:has_cpunet:build_extra_args"
-declare -a BOARDS=(
-    "nrf52840dk:nrf52840dk/nrf52840:nrf52840:0:"
-    "nrf5340dk:nrf5340dk/nrf5340/cpuapp:nrf5340:1:"
-    "nrf54l15dk:nrf54l15dk/nrf54l15/cpuapp:nrf54l15:0:"
-    "nrf54lm20dk:nrf54lm20dk/nrf54lm20a/cpuapp:nrf54lm20:0:"
-)
-
-# Special board configurations (for weather_station only)
-declare -a WEATHER_STATION_BOARDS=(
-    "thingy53:thingy53/nrf5340/cpuapp:thingy53:0:"
+# Unified build configuration: one entry per (sample, board) to build.
+# Format: "sample_name:sample_path:board_id:board_name:firmware_subdir:has_cpunet:extra_args"
+declare -a SAMPLE_BOARDS=(
+    # lock
+    "lock:samples/matter/lock:nrf52840dk:nrf52840dk/nrf52840:nrf52840:0:"
+    "lock:samples/matter/lock:nrf5340dk:nrf5340dk/nrf5340/cpuapp:nrf5340:1:"
+    "lock:samples/matter/lock:nrf54l15dk:nrf54l15dk/nrf54l15/cpuapp:nrf54l15:0:"
+    "lock:samples/matter/lock:nrf54lm20dk:nrf54lm20dk/nrf54lm20a/cpuapp:nrf54lm20:0:"
+    # light_bulb
+    "light_bulb:samples/matter/light_bulb:nrf52840dk:nrf52840dk/nrf52840:nrf52840:0:"
+    "light_bulb:samples/matter/light_bulb:nrf5340dk:nrf5340dk/nrf5340/cpuapp:nrf5340:1:"
+    "light_bulb:samples/matter/light_bulb:nrf54l15dk:nrf54l15dk/nrf54l15/cpuapp:nrf54l15:0:"
+    "light_bulb:samples/matter/light_bulb:nrf54lm20dk:nrf54lm20dk/nrf54lm20a/cpuapp:nrf54lm20:0:"
+    # contact_sensor
+    "contact_sensor:samples/matter/contact_sensor:nrf52840dk:nrf52840dk/nrf52840:nrf52840:0:"
+    "contact_sensor:samples/matter/contact_sensor:nrf5340dk:nrf5340dk/nrf5340/cpuapp:nrf5340:1:"
+    "contact_sensor:samples/matter/contact_sensor:nrf54l15dk:nrf54l15dk/nrf54l15/cpuapp:nrf54l15:0:"
+    "contact_sensor:samples/matter/contact_sensor:nrf54lm20dk:nrf54lm20dk/nrf54lm20a/cpuapp:nrf54lm20:0:"
+    # temperature_sensor (includes nrf54l15tag)
+    "temperature_sensor:samples/matter/temperature_sensor:nrf52840dk:nrf52840dk/nrf52840:nrf52840:0:"
+    "temperature_sensor:samples/matter/temperature_sensor:nrf5340dk:nrf5340dk/nrf5340/cpuapp:nrf5340:1:"
+    "temperature_sensor:samples/matter/temperature_sensor:nrf54l15dk:nrf54l15dk/nrf54l15/cpuapp:nrf54l15:0:"
+    "temperature_sensor:samples/matter/temperature_sensor:nrf54lm20dk:nrf54lm20dk/nrf54lm20a/cpuapp:nrf54lm20:0:"
+    "temperature_sensor:samples/matter/temperature_sensor:nrf54l15tag:nrf54l15tag/nrf54l15/cpuapp:nrf54l15tag:0:"
+    # weather_station (thingy53 and nrf54l15tag)
+    "weather_station:applications/matter_weather_station:thingy53:thingy53/nrf5340/cpuapp:thingy53:0:"
+    "weather_station:applications/matter_weather_station:nrf54l15tag:nrf54l15tag/nrf54l15/cpuapp:nrf54l15tag:0:"
 )
 
 # Helper function to check if a sample should be built
@@ -166,28 +171,10 @@ should_build_board() {
 # Calculate total builds
 calculate_total_builds() {
     local total=0
-    for sample_config in "${SAMPLES[@]}"; do
-        IFS=':' read -r sample_name sample_path is_app <<< "$sample_config"
-        
-        # Skip if sample not in filter
-        if ! should_build_sample "$sample_name"; then
-            continue
-        fi
-        
-        if [ "$sample_name" == "weather_station" ]; then
-            for board_config in "${WEATHER_STATION_BOARDS[@]}"; do
-                IFS=':' read -r board_id board_name firmware_subdir has_cpunet extra_args <<< "$board_config"
-                if should_build_board "$board_id"; then
-                    total=$((total + 1))
-                fi
-            done
-        else
-            for board_config in "${BOARDS[@]}"; do
-                IFS=':' read -r board_id board_name firmware_subdir has_cpunet extra_args <<< "$board_config"
-                if should_build_board "$board_id"; then
-                    total=$((total + 1))
-                fi
-            done
+    for build_config in "${SAMPLE_BOARDS[@]}"; do
+        IFS=':' read -r sample_name sample_path board_id board_name firmware_subdir has_cpunet extra_args <<< "$build_config"
+        if should_build_sample "$sample_name" && should_build_board "$board_id"; then
+            total=$((total + 1))
         fi
     done
     echo "$total"
@@ -336,32 +323,13 @@ if [ "$DRY_RUN" -eq 1 ]; then
     echo ""
     
     build_num=0
-    for sample_config in "${SAMPLES[@]}"; do
-        IFS=':' read -r sample_name sample_path is_app <<< "$sample_config"
-        
-        # Skip if sample not in filter
-        if ! should_build_sample "$sample_name"; then
+    for build_config in "${SAMPLE_BOARDS[@]}"; do
+        IFS=':' read -r sample_name sample_path board_id board_name firmware_subdir has_cpunet extra_args <<< "$build_config"
+        if ! should_build_sample "$sample_name" || ! should_build_board "$board_id"; then
             continue
         fi
-        
-        # Determine which board array to use
-        if [ "$sample_name" == "weather_station" ]; then
-            BOARD_ARRAY=("${WEATHER_STATION_BOARDS[@]}")
-        else
-            BOARD_ARRAY=("${BOARDS[@]}")
-        fi
-        
-        for board_config in "${BOARD_ARRAY[@]}"; do
-            IFS=':' read -r board_id board_name firmware_subdir has_cpunet extra_args <<< "$board_config"
-            
-            # Skip if board not in filter
-            if ! should_build_board "$board_id"; then
-                continue
-            fi
-            
-            build_num=$((build_num + 1))
-            echo "$build_num. Sample: $sample_name, Board: $board_id ($board_name)"
-        done
+        build_num=$((build_num + 1))
+        echo "$build_num. Sample: $sample_name, Board: $board_id ($board_name)"
     done
     
     echo ""
@@ -374,39 +342,24 @@ echo ""
 
 draw_progress_bar 0 "$TOTAL_BUILDS" "" ""
 
-for sample_config in "${SAMPLES[@]}"; do
-    IFS=':' read -r sample_name sample_path is_app <<< "$sample_config"
-    
-    # Skip if sample not in filter
-    if ! should_build_sample "$sample_name"; then
+last_sample=""
+for build_config in "${SAMPLE_BOARDS[@]}"; do
+    IFS=':' read -r sample_name sample_path board_id board_name firmware_subdir has_cpunet extra_args <<< "$build_config"
+    if ! should_build_sample "$sample_name" || ! should_build_board "$board_id"; then
         continue
     fi
-    
-    first_board=1
-    
-    # Determine which board array to use
-    if [ "$sample_name" == "weather_station" ]; then
-        BOARD_ARRAY=("${WEATHER_STATION_BOARDS[@]}")
-    else
-        BOARD_ARRAY=("${BOARDS[@]}")
+
+    first_board=0
+    if [ "$sample_name" != "$last_sample" ]; then
+        first_board=1
+        last_sample="$sample_name"
     fi
-    
-    for board_config in "${BOARD_ARRAY[@]}"; do
-        IFS=':' read -r board_id board_name firmware_subdir has_cpunet extra_args <<< "$board_config"
-        
-        # Skip if board not in filter
-        if ! should_build_board "$board_id"; then
-            continue
-        fi
-        
-        if ! build_sample "$sample_name" "$sample_path" "$board_id" "$board_name" "$firmware_subdir" "$has_cpunet" "$extra_args" "$first_board"; then
-            echo ""
-            echo "Build failed. Stopping."
-            exit 1
-        fi
-        
-        first_board=0
-    done
+
+    if ! build_sample "$sample_name" "$sample_path" "$board_id" "$board_name" "$firmware_subdir" "$has_cpunet" "$extra_args" "$first_board"; then
+        echo ""
+        echo "Build failed. Stopping."
+        exit 1
+    fi
 done
 
 # Final progress bar
