@@ -10,9 +10,9 @@ import Develop from '../../../common/steps/develop';
 import EcosystemRequirements from '../../../common/steps/EcosystemRequirements';
 import EcosystemSetup from '../../../common/steps/EcosystemSetup';
 import EnableAdvertising from '../../../common/steps/EnableAdvertising';
-import Info from '../../../common/steps/Info';
 import Interaction from '../../../common/steps/Interaction';
 import Learn from '../../../common/steps/Learn';
+import MultiInfoStep from '../../../common/steps/MultiInfoStep';
 import Pairing from '../../../common/steps/Pairing';
 import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
@@ -26,9 +26,22 @@ import {
 } from '../commonResources';
 import { AdvertisingData } from '../pairingConfig';
 
-const infoConfig = {
+const multiOptionInfoConfig = {
     title: 'Next-level multiprotocol SoC',
-    dkImage: '../resources/devices/images/54L15DK.png',
+    options: [
+        {
+            dkName: 'nRF54L15 DK',
+            dkImage: '../resources/devices/images/54L15DK.png',
+            dkDescription:
+                'The nRF54L15 DK is the development kit for all three wireless SoC (System-on-Chip) options in the nRF54L Series. The nRF54L15 sits on the development board, while the nRF54L10 and nRF54L05 can be emulated. The affordable single-board development kit makes all features of the wireless SoC available to the developer.',
+        },
+        {
+            dkName: 'nRF54L15 TAG',
+            dkImage: '../resources/devices/images/54L15TAG.png',
+            dkDescription:
+                'The nRF54L15 TAG is a tag-like device running the nRF54L15 SoC. It is a small, low-cost tag that can be used for testing and development of Matter applications. This device needs to be connected to the nRF54L15 DK via DEBUG OUT connector during the flashing process. It is recommended to be powered externally by the CR2032 battery.',
+        },
+    ],
     dkTechnologiesImage: '../resources/devices/images/DKTech.png',
     SoCDescription:
         'nRF54L15 is the first System-on-Chip (SoC) in the nRF54L Series. It is an ultra-low power Bluetooth 6.0 SoC with a new best-in-class multiprotocol radio and advanced security features.',
@@ -37,6 +50,46 @@ const infoConfig = {
     documentationLink:
         'https://docs.nordicsemi.com/bundle/ps_nrf54L15/page/keyfeatures_html5.html',
 };
+
+/** Samples available only on nRF54L15 TAG (with TAG firmware paths). */
+const programConfigTag = [
+    {
+        name: 'Matter Temperature Sensor',
+        type: 'jlink' as const,
+        documentation: {
+            label: 'Matter Temperature Sensor',
+            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+        },
+        firmware: [
+            {
+                core: 'Application' as const,
+                file: 'nrf54l15tag/nrf54l15tag_temperature_sensor.hex',
+                link: {
+                    label: 'Matter Temperature Sensor',
+                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+                },
+            },
+        ],
+    },
+    {
+        name: 'Matter Weather Station',
+        type: 'jlink' as const,
+        documentation: {
+            label: 'Matter Weather Station',
+            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/weather_station/README.html',
+        },
+        firmware: [
+            {
+                core: 'Application' as const,
+                file: 'nrf54l15tag/nrf54l15tag_weather_station.hex',
+                link: {
+                    label: 'Matter Weather Station',
+                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/weather_station/README.html',
+                },
+            },
+        ],
+    },
+] as Choice[];
 
 const programConfig = [
     {
@@ -113,6 +166,20 @@ const programConfig = [
     },
 ] as Choice[];
 
+const filterProgramChoicesByPlatform = (
+    choices: Choice[],
+    flowContext: Record<string, unknown>
+): Choice[] => {
+    const option = flowContext?.selectedPlatformVariant as
+        | { dkName?: string }
+        | undefined;
+    const platformName = option?.dkName;
+    if (platformName === 'nRF54L15 TAG') {
+        return programConfigTag;
+    }
+    return choices;
+};
+
 const verifyConfig = [
     {
         ref: 'Matter Door Lock',
@@ -137,6 +204,13 @@ const verifyConfig = [
     },
     {
         ref: 'Matter Contact Sensor',
+        config: {
+            vComIndex: 1,
+            regex: /(Using nRF Connect SDK[\s\S]*Init CHIP stack[\s\S]*Device Configuration:[\s\S]*Setup Discriminator \(0xFFFF for UNKNOWN\/ERROR\): 3840 \(0xF00\))/,
+        },
+    },
+    {
+        ref: 'Matter Weather Station',
         config: {
             vComIndex: 1,
             regex: /(Using nRF Connect SDK[\s\S]*Init CHIP stack[\s\S]*Device Configuration:[\s\S]*Setup Discriminator \(0xFFFF for UNKNOWN\/ERROR\): 3840 \(0xF00\))/,
@@ -168,9 +242,14 @@ export default {
     learnConfig,
     advertisingData,
     flow: [
-        Info(infoConfig),
+        MultiInfoStep({
+            ...multiOptionInfoConfig,
+            persistSelectedOptionKey: 'selectedPlatformVariant',
+        }),
         Rename(),
-        Program(programConfig, sampleCommonConfig),
+        Program(programConfig, sampleCommonConfig, {
+            filterChoicesByContext: filterProgramChoicesByPlatform,
+        }),
         Verify(verifyConfig),
         SelectEcosystem(),
         EcosystemRequirements(),

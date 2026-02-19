@@ -45,6 +45,7 @@ const NoteSupportedDevices = () => (
                 '- **nRF54L15 DK** (via J-Link debugger port)',
                 '- **nRF54LM20 DK** (via J-Link debugger port)',
                 '- **Thingy:53** (via USB port)',
+                '- **nRF54L15 TAG** (via J-Link debugger port of nRF54L15 DK)',
             ].join('\n')}
         </ReactMarkdown>
     </div>

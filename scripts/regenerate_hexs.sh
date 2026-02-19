@@ -13,7 +13,7 @@ usage() {
     echo "  -s, --sample SAMPLE     Build only specific sample (can be used multiple times)"
     echo "                          Options: lock, light_bulb, contact_sensor, temperature_sensor, weather_station"
     echo "  -b, --board BOARD       Build only for specific board (can be used multiple times)"
-    echo "                          Options: nrf52840dk, nrf5340dk, nrf54l15dk, nrf54lm20dk, nrf54l15tag, thingy53"
+    echo "                          Options: nrf52840dk, nrf5340dk, nrf54l15dk, nrf54l15tag, nrf54lm20dk, thingy53"
     echo "  -d, --dry-run           Show what would be built without building"
     echo "  -v, --verbose           Show build output in real-time"
     echo ""
@@ -240,7 +240,7 @@ build_sample() {
     
     # Build with west
     if [ -n "$extra_args" ]; then
-        west build -b "$board_name" -d "$build_dir" --sysbuild $extra_args > "$build_dir.log" 2>&1
+        west build -b "$board_name" -d "$build_dir" --sysbuild -- $extra_args > "$build_dir.log" 2>&1
     else
         west build -b "$board_name" -d "$build_dir" --sysbuild > "$build_dir.log" 2>&1
     fi
