@@ -10,14 +10,23 @@ import describeError from '@nordicsemiconductor/pc-nrfconnect-shared/src/logging
 
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { getSelectedDeviceUnsafely } from '../../../features/device/deviceSlice';
+import { getFlowContext } from '../../../features/flow/flowSlice';
 import { Back } from '../../Back';
 import Main from '../../Main';
 import { Next } from '../../Next';
 import Verifying from '../../Verifying';
+import runVerificationRtt from './jlinkRtt';
 import runVerification from './serialport';
 import { getError, getResponse, reset, setError } from './verifySlice';
 
 import './cursor.scss';
+
+const stripLogFormatting = (s: string): string =>
+    s
+        // eslint-disable-next-line no-control-regex -- match ANSI escape sequences
+        .replace(/\x1b\[[0-9;]*m/g, '')
+        .replace(/\[\d+(;\d+)*m/g, '')
+        .replace(/\[\d{2}:\d{2}:\d{2}\.\d{3},\d{3}\]\s*/g, '');
 
 export default ({
     vComIndex,
@@ -32,6 +41,10 @@ export default ({
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const response = useAppSelector(getResponse);
     const error = useAppSelector(getError);
+    const platformVariant = useAppSelector(state =>
+        getFlowContext(state, 'selectedPlatformVariant')
+    ) as { dkName?: string } | undefined;
+    const useJLinkRtt = platformVariant?.dkName === 'nRF54L15 TAG';
     const [cleanup, setCleanup] = useState<() => void>();
     const [errorTimeout, setErrorTimeout] = useState<NodeJS.Timeout>();
     const [validResponse, setValidResponse] = useState<string>();
@@ -40,8 +53,11 @@ export default ({
     useEffect(() => {
         if (!error && !response) {
             // May receive the end of device output after programming reset if user pressed next too quickly
+            const runVerificationThunk = useJLinkRtt
+                ? runVerificationRtt(device)
+                : runVerification(device, vComIndex);
             setTimeout(() => {
-                dispatch(runVerification(device, vComIndex))
+                dispatch(runVerificationThunk)
                     .then(cl => {
                         setCleanup(() => cl);
                         setErrorTimeout(
@@ -59,18 +75,22 @@ export default ({
                     .catch(e => dispatch(setError(describeError(e))));
             }, 5000);
         }
-    }, [dispatch, response, error, device, vComIndex, regex]);
+    }, [dispatch, response, error, device, vComIndex, useJLinkRtt, regex]);
 
     useEffect(() => {
         if (!validResponse) {
-            const [, match] = (response || '').match(regex) ?? [];
+            const raw = response || '';
+            const normalized = stripLogFormatting(raw);
+            const [, match] = normalized.match(regex) ?? [];
             if (match) {
                 // Extract Product Name from the response
-                const productNameMatch = (response || '').match(
-                    /Product Name:\s*(.+)/
-                );
+                const productNameMatch = raw.match(/Product Name:\s*(.+)/);
                 if (productNameMatch) {
-                    const productName = productNameMatch[1].trim();
+                    const productName = productNameMatch[1]
+                        // eslint-disable-next-line no-control-regex -- strip ANSI
+                        .replace(/\x1b\[[0-9;]*m/g, '')
+                        .replace(/\[\d+(;\d+)*m/g, '')
+                        .trim();
                     // Verify Product Name matches the expected ref value
                     if (productName !== ref) {
                         if (cleanup) cleanup();
@@ -91,12 +111,15 @@ export default ({
     }, [response, validResponse, regex, errorTimeout, cleanup, ref, dispatch]);
 
     useEffect(() => {
-        if (validResponse && cleanup && errorTimeout) {
+        if (!(validResponse && cleanup && errorTimeout)) return;
+        const delayMs = 150;
+        const id = setTimeout(() => {
             cleanup();
             clearTimeout(errorTimeout);
             setCleanup(undefined);
             setErrorTimeout(undefined);
-        }
+        }, delayMs);
+        return () => clearTimeout(id);
     }, [validResponse, cleanup, errorTimeout]);
 
     const getHeading = () => {
@@ -125,25 +148,33 @@ export default ({
             .filter(line =>
                 relevantKeywords.some(keyword => line.includes(keyword))
             )
-            .map(line =>
-                // Remove the "I: <number> [DL] " prefix pattern
-                line.replace(/^I:\s*\d+\s*\[DL\]\s*/, '')
-            )
+            .map(line => {
+                const cleaned = stripLogFormatting(line);
+                return cleaned
+                    .replace(/^I:\s*\d+\s*\[DL\]\s*/, '')
+                    .replace(/^<inf>\s+\w+:\s*\[DL\]\s*/, '')
+                    .replace(/^\[DL\]\s*/, '')
+                    .trim();
+            })
             .filter(Boolean);
     };
 
     return (
         <Main>
             <Main.Content heading={getHeading()}>
-                {waiting && <Verifying />}
+                {waiting && (
+                    <Verifying jlinkRtt={useJLinkRtt && !validResponse} />
+                )}
                 {validResponse && (
                     <div className="tw-flex tw-flex-col tw-gap-1">
                         <div className="tw-font-medium">
-                            Serial output from the sample:
+                            {useJLinkRtt
+                                ? 'J-Link RTT output from the sample:'
+                                : 'Serial output from the sample:'}
                         </div>
-                        <div className="alt-font tw-relative tw-mt-4 tw-bg-gray-700 tw-p-4 tw-text-gray-50">
-                            {filterAndCleanLogs(validResponse).map(line => (
-                                <p key={line}>{line}</p>
+                        <div className="alt-font tw-relative tw-mt-4 tw-min-h-[4rem] tw-break-words tw-bg-gray-700 tw-p-4 tw-pr-14 tw-text-gray-50">
+                            {filterAndCleanLogs(response || '').map(line => (
+                                <p key={line.slice(0, 40)}>{line}</p>
                             ))}
                             <div className="tw-absolute tw-right-4 tw-top-1/2 tw--translate-y-1/2">
                                 <span className="mdi mdi-circle tw-top-0.5 tw-z-0 tw-text-4xl tw-text-green" />
