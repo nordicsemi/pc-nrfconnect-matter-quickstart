@@ -13,6 +13,7 @@ interface State {
     currentStepIndex: number;
     finishedLastStep: boolean;
     isConnectVisible: boolean;
+    flowContext: Record<string, unknown>;
 }
 
 const initialState: State = {
@@ -20,6 +21,7 @@ const initialState: State = {
     currentStepIndex: -1,
     finishedLastStep: false,
     isConnectVisible: true,
+    flowContext: {},
 };
 
 const slice = createSlice({
@@ -36,11 +38,18 @@ const slice = createSlice({
                 );
 
             state.flow = action.payload;
-
             if (flowChanged) {
                 state.currentStepIndex = 0;
+                state.flowContext = {};
             }
             // Otherwise preserve the current step index
+        },
+        setFlowContext: (
+            state,
+            action: PayloadAction<{ key: string; value: unknown }>
+        ) => {
+            const { key, value } = action.payload;
+            state.flowContext[key] = value;
         },
         goToNextStep: state => {
             state.currentStepIndex = Math.min(
@@ -74,6 +83,7 @@ export const {
     goToPreviousStep,
     setFinishedLastStep,
     setIsConnectVisible,
+    setFlowContext,
 } = slice.actions;
 
 export const isConnectVisible = (state: RootState) =>
@@ -83,5 +93,10 @@ export const getCurrentStepIndex = (state: RootState) =>
     state.flowProgress.currentStepIndex;
 export const getFinishedLastStep = (state: RootState) =>
     state.flowProgress.finishedLastStep;
+
+export const getFlowContext = (state: RootState, key?: string): unknown =>
+    key === undefined
+        ? state.flowProgress.flowContext
+        : state.flowProgress.flowContext[key];
 
 export default slice.reducer;
