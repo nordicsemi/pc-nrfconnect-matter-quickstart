@@ -1,6 +1,6 @@
 # Get started
 
-The Matter Quick Start app is a cross-platform tool for guided setup and installation procedures of Matter accessory devices, available as one of the applications in [nRF Connect for Desktop](https://docs.nordicsemi.com/bundle/nrf-connect-desktop/page/index.html).
+The Matter Quick Start app is a cross-platform tool for guided setup and installation procedures of Matter accessory devices, available as one of the applications in nRF Connect for Desktop.
 
 ??? info "What is Matter"
 
