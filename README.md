@@ -10,7 +10,7 @@ installation procedures of Matter accessory devices by Nordic Semiconductor.
 
 The Matter Quick Start app is installed from nRF Connect from Desktop. For
 detailed steps, see
-[Installing nRF Connect for Desktop apps](https://docs.nordicsemi.com/bundle/nrf-connect-desktop/page/installing_apps.html)
+[Installing nRF Connect for Desktop apps](https://docs.nordicsemi.com/bundle/swtools_docs/page/app/nrf-connect-desktop/installing_apps.html)
 in the nRF Connect from Desktop documentation.
 
 After installing and opening the app from nRF Connect for Desktop, connect your
@@ -22,7 +22,7 @@ application.
 The Matter Quick Start app is meant as an onboarding tool and it does not come
 with its own documentation. The onboarding steps will be different for each of
 the
-[supported devices and ecosystems](https://docs.nordicsemi.com/bundle/nrf-connect-matter-quickstart/page/index.html#supported-devices).
+[supported devices and ecosystems](https://docs.nordicsemi.com/bundle/swtools_docs/page/app/pc-nrfconnect-matter-quickstart/index.html#supported-devices).
 
 ## Development
 
