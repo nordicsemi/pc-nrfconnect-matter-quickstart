@@ -157,6 +157,6 @@ const MultiInfoStep = ({
 };
 
 export default (props: Props) => ({
-    name: 'MultiInfo',
+    name: 'Info',
     component: () => MultiInfoStep(props),
 });
