@@ -1,4 +1,4 @@
-## 1.1.0 - 2026-03-31
+## 1.1.0 - 2026-04-23
 
 -   Updated the `nrfutil device` command to v2.17.5. This version is required to
     program the nRF54LM20B SoC.
