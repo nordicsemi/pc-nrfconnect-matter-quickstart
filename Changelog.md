@@ -1,3 +1,10 @@
+## 1.1.1 - 2026-10-01
+
+-   Updated Matter documentation and sample links to the `ncs-matter` add-on
+    docs.
+-   Added nRF Matter for Mobile to the development resources page.
+-   Fixed the nRF54L15 DK interaction step to reference Button 1.
+
 ## 1.1.0 - 2026-04-23
 
 -   Updated the `nrfutil device` command to v2.17.5. This version is required to

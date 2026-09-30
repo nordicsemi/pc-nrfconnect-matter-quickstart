@@ -48,7 +48,7 @@ const programConfig = [
             'This weather station application demonstrates the usage of the Matter application layer to build a weather station device using the Nordic Thingy:53. Such a device lets you remotely gather different kinds of data using the device sensors, such as temperature, air pressure, and relative humidity. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Weather Station',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/applications/matter_weather_station/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html',
         },
         firmware: [
             {
@@ -56,7 +56,7 @@ const programConfig = [
                 file: 'thingy53/thingy53_matter_weather_station.zip',
                 link: {
                     label: 'Matter Weather Station',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/applications/matter_weather_station/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html',
                 },
             },
         ],

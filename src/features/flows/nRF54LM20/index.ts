@@ -44,7 +44,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Door Lock',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/lock/README.html',
         },
         firmware: [
             {
@@ -52,7 +52,7 @@ const programConfig = [
                 file: 'nrf54lm20/nrf54lm20dk_lock.hex',
                 link: {
                     label: 'Matter Door Lock',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/lock/README.html',
                 },
             },
         ],
@@ -62,7 +62,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Light Bulb',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/light_bulb/README.html',
         },
         firmware: [
             {
@@ -70,7 +70,7 @@ const programConfig = [
                 file: 'nrf54lm20/nrf54lm20dk_light_bulb.hex',
                 link: {
                     label: 'Matter Light Bulb',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/light_bulb/README.html',
                 },
             },
         ],
@@ -80,7 +80,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Temperature Sensor',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
         },
         firmware: [
             {
@@ -88,7 +88,7 @@ const programConfig = [
                 file: 'nrf54lm20/nrf54lm20dk_temperature_sensor.hex',
                 link: {
                     label: 'Matter Temperature Sensor',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
                 },
             },
         ],
@@ -98,7 +98,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Contact Sensor',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/contact_sensor/README.html',
         },
         firmware: [
             {
@@ -106,7 +106,7 @@ const programConfig = [
                 file: 'nrf54lm20/nrf54lm20dk_contact_sensor.hex',
                 link: {
                     label: 'Matter Contact Sensor',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/contact_sensor/README.html',
                 },
             },
         ],

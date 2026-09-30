@@ -49,12 +49,26 @@ export const commonLearningResources: ResourceProps[] = [
             'Matter protocol section in the nRF Connect SDK documentation',
         link: {
             label: 'Matter protocol in the nRF Connect SDK',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/index.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/index.html',
         },
     },
 ];
 
 export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
+    {
+        label: 'nRF Matter for Mobile',
+        description:
+            'A mobile application for Matter development. Use nRF Matter for Mobile exploring, testing and debugging Matter-compatible devices.',
+        downloadLink: {
+            label: 'nRF Matter for Mobile',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/tools.html#nrf-matter-for-mobile',
+        },
+        guideLink: {
+            label: 'nRF Matter for Mobile user guide',
+            href: 'https://github.com/nordicsemi/kotlin-nrf-matter/blob/main/README.md',
+        },
+        buttonLabel: 'See download instructions',
+    },
     {
         label: 'CHIP Tool',
         description:
@@ -65,7 +79,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
         guideLink: {
             label: 'CHIP Tool user guide',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/matter/chip_tool_guide.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/tools.html#chip-tool-for-linux-or-macos',
         },
     },
     {
@@ -78,7 +92,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
         guideLink: {
             label: 'Matter OTA user guide',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/overview/dfu.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/overview/dfu.html',
         },
     },
     {
@@ -91,7 +105,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
         guideLink: {
             label: 'CHIP Cert application user guide',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/matter/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/tools.html#chip-certificate-tool',
         },
     },
     {
@@ -100,7 +114,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
             'A graphical tool for creating, editing, and managing Matter data models and clusters. Use ZapTool to define device capabilities and generate configuration files for your Matter applications.',
         downloadLink: {
             label: 'ZAP tool',
-            href: `https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/tools.html#installing_the_zap_tool`,
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/tools.html#installing-the-zap-tool',
         },
         guideLink: {
             label: 'ZAP tool user guide',
@@ -118,7 +132,7 @@ export const matterDevResources: ResourcesWithdDownloadAndGuide[] = [
         },
         guideLink: {
             label: 'Online Power Profiler for Matter over Thread user guide',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/tools.html#online_power_profiler_for_matter_over_thread',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/tools.html#online-power-profiler-for-matter-over-thread',
         },
         buttonLabel: 'Open the tool in your browser',
     },

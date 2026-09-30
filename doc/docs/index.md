@@ -6,7 +6,7 @@ The Matter Quick Start app is a cross-platform tool for guided setup and install
 
     [Matter](https://buildwithmatter.com/) is an open-source connectivity standard for smart home and IoT devices. Developed by the Connectivity Standards Alliance (CSA), Matter aims to enable secure, reliable, and seamless communication between a wide range of devices from different manufacturers. It is designed to work over common networking technologies such as Ethernet, Wi-Fi, and Thread, and supports integration with major smart home ecosystems.
 
-    For more information about Matter in the {{NCS}}, refer to the [Matter documentation](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/index.html).
+    For more information about Matter in the {{NCS}}, refer to the [Matter documentation](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/index.html).
 
 ??? info "What is Matter accessory device"
 
@@ -36,9 +36,9 @@ After installing and opening the app from nRF Connect for Desktop, connect one o
 
 | Device | Supported Matter samples or applications |
 |--------|-------------------------|
-| nRF54L15 DK<br/>nRF54LM20 DK<br/>nRF5340 DK<br/>nRF52840 DK | Any of the following samples:<br/>- [Matter Door Lock](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html)<br/>- [Matter Light Bulb](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html)<br/>- [Matter Temperature Sensor](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html)<br/>- [Matter Contact Sensor](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html) |
-| Nordic Thingy:53* | [Matter Weather Station](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/applications/matter_weather_station/README.html) application |
-| nRF54L15 TAG | - [Matter Weather Station](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/applications/matter_weather_station/README.html) application<br/> - [Matter Temperature Sensor](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html) sample |
+| nRF54L15 DK<br/>nRF54LM20 DK<br/>nRF5340 DK<br/>nRF52840 DK | Any of the following samples:<br/>- [Matter Door Lock](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/lock/README.html)<br/>- [Matter Light Bulb](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/light_bulb/README.html)<br/>- [Matter Temperature Sensor](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html)<br/>- [Matter Contact Sensor](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/contact_sensor/README.html) |
+| Nordic Thingy:53* | [Matter Weather Station](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html) application |
+| nRF54L15 TAG | - [Matter Weather Station](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html) application<br/> - [Matter Temperature Sensor](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html) sample |
 
 ??? info "* Programming Nordic Thingy:53"
     Nordic Thingy:53 does not have an on-board J-Link programmer. For this reason, you can only program the device through Device Firmware Upgrade (DFU) over USB. The Matter Quick Start app provides step-by-step guidance for putting the Thingy:53 into the bootloader mode and verifies that the memory partitions are compatible with the selected firmware before the upload.

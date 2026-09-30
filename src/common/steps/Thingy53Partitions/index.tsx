@@ -59,7 +59,7 @@ const VerifyPartitionsStep = () => (
                 >
                     You can see the expected partitions layout below or you can
                     check the [Matter hardware and memory
-                    requirements](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/matter/getting_started/hw_requirements.html#reference_matter_memory_layouts)
+                    requirements](https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/matter/getting_started/hw_requirements.html#reference-matter-memory-layouts)
                     for a more detailed breakdown of memory layout.
                 </ReactMarkdown>
                 <div className="tw-flex tw-flex-row tw-items-start tw-justify-start tw-gap-6">
