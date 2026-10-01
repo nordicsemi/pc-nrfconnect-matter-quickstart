@@ -58,7 +58,7 @@ const programConfigTag = [
         type: 'jlink' as const,
         documentation: {
             label: 'Matter Temperature Sensor',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
         },
         firmware: [
             {
@@ -66,7 +66,7 @@ const programConfigTag = [
                 file: 'nrf54l15tag/nrf54l15tag_temperature_sensor.hex',
                 link: {
                     label: 'Matter Temperature Sensor',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
                 },
             },
         ],
@@ -76,7 +76,7 @@ const programConfigTag = [
         type: 'jlink' as const,
         documentation: {
             label: 'Matter Weather Station',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/weather_station/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html',
         },
         firmware: [
             {
@@ -84,7 +84,7 @@ const programConfigTag = [
                 file: 'nrf54l15tag/nrf54l15tag_weather_station.hex',
                 link: {
                     label: 'Matter Weather Station',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/weather_station/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/weather_station/README.html',
                 },
             },
         ],
@@ -97,7 +97,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Door Lock',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/lock/README.html',
         },
         firmware: [
             {
@@ -105,7 +105,7 @@ const programConfig = [
                 file: 'nrf54l15/nrf54l15dk_lock.hex',
                 link: {
                     label: 'Matter Door Lock',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/lock/README.html',
                 },
             },
         ],
@@ -115,7 +115,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Light Bulb',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/light_bulb/README.html',
         },
         firmware: [
             {
@@ -123,7 +123,7 @@ const programConfig = [
                 file: 'nrf54l15/nrf54l15dk_light_bulb.hex',
                 link: {
                     label: 'Matter Light Bulb',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/light_bulb/README.html',
                 },
             },
         ],
@@ -133,7 +133,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Temperature Sensor',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
         },
         firmware: [
             {
@@ -141,7 +141,7 @@ const programConfig = [
                 file: 'nrf54l15/nrf54l15dk_temperature_sensor.hex',
                 link: {
                     label: 'Matter Temperature Sensor',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/temperature_sensor/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/temperature_sensor/README.html',
                 },
             },
         ],
@@ -151,7 +151,7 @@ const programConfig = [
         type: 'jlink',
         documentation: {
             label: 'Matter Contact Sensor',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html',
+            href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/contact_sensor/README.html',
         },
         firmware: [
             {
@@ -159,7 +159,7 @@ const programConfig = [
                 file: 'nrf54l15/nrf54l15dk_contact_sensor.hex',
                 link: {
                     label: 'Matter Contact Sensor',
-                    href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/contact_sensor/README.html',
+                    href: 'https://nrfconnectdocs.nordicsemi.com/addons/ncs-matter/latest/samples/contact_sensor/README.html',
                 },
             },
         ],
@@ -256,7 +256,7 @@ export default {
         EcosystemSetup(),
         EnableAdvertising(advertisingData),
         Pairing(),
-        Interaction({ led: 1, button: 0 }),
+        Interaction({ led: 1, button: 1 }),
         Learn(learnConfig),
         Develop(sampleCommonConfig, matterDevResources),
         Apps(appsCommonConfig),
